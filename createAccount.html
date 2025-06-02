@@ -19,11 +19,11 @@
             </div>
             <div class="info">
                 <label class="label" for="password">Password:</label> <br>
-                <input type="text" id="password2" name="password">
+                <input type="password" id="password2" name="password">
             </div>
             <div class="info">
                 <label class="label" for="confirmP">Confirm Password:</label> <br>
-                <input type="text" id="confirmP" name="confirmP">
+                <input type="password" id="confirmP" name="confirmP">
             </div>
             <button type="button" class="button" id="signupButton" value="Create Account"> Create Account </button>
         </form>
@@ -31,21 +31,34 @@
     </div>
     <script>
         document.getElementById("signupButton").addEventListener("click", function (e) {
-            e.preventDefault(); //para di agad mag run ang form
-            //para maaccess ang inputs from form sa html dito sa js
+            e.preventDefault();
+
             const email = document.querySelector('#email').value.trim();
             const password = document.querySelector('#password2').value.trim();
-            const confirmP = document.querySelector('#confirmP').value.trim();
+            const confirmPassword = document.querySelector('#confirmP').value.trim();
 
-            if (email === "" || password === "" || confirmP === "") { //checks if kulang ang input ng user
-                alert("Please complete filling up informations needed"); //mag ppop up pag nag true ang nasa taas
-            } else { //mag rrun if nag false and if statement
-                if (password !== confirmP) { //checks if hindi same ang ininput na password at confirm password
-                    alert("Passwords do not match.") //mag ppop up pag nag true ang nasa taas
-                } else { //mag rrun if lahat nafill upan at same ang password and confirm password
-                    window.location.href = "home.html"; //mare-redirect sa home nafill upan lahat
-                }
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+            if (email === "" || password === "" || confirmPassword === "") {
+                alert("Please complete filling up informations needed");
+                return;
             }
+
+            if (!passwordPattern.test(password)) {
+                alert("Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            localStorage.setItem('registeredEmail', email);
+            localStorage.setItem('registeredPassword', password);
+
+            alert("Account created successfully!");
+            window.location.href = "logIn.html";
         });
     </script>
 </body>

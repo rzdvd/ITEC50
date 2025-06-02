@@ -19,7 +19,7 @@
             </div>
             <div class="info">
                 <label class="label" for="password">Password:</label> <br>
-                <input type="text" id="password1" name="password">
+                <input type="password" id="password1" name="password">
             </div>
             <button type="button" class="button" id="loginButton" name="loginButton">Log In</button>
         </form>
@@ -29,17 +29,26 @@
     <script>
 
         document.getElementById("loginButton").addEventListener("click", function (e) {
-            e.preventDefault(); //para di agad mag run ang form
-            //para maaccess ang inputs from form sa html dito sa js
+            e.preventDefault(); // Prevent form submission
+            
             const email = document.querySelector('#email').value.trim();
             const password = document.querySelector('#password1').value.trim();
+            const storedEmail = localStorage.getItem('registeredEmail');
+            const storedPassword = localStorage.getItem('registeredPassword');
 
-            if (email === "" || password === "") { //checks if kulang ang input ng user
-                alert("Please complete filling up informations needed"); //mag ppop up pag nag true ang nasa taas
-            } else { //mag rrun if nag false and if statement
-                window.location.href = "home.html"; //mare-redirect sa home nafill upan lahat
+            if (email === "" || password === "") {
+                alert("Please complete filling up informations needed");
+                return;
+            }
+
+            if (email === storedEmail && password === storedPassword) {
+                alert("Login successful!");
+                window.location.href = "home.html";
+            } else {
+                alert("Invalid email or password.");
             }
         });
+
     </script>
 </body>
 
