@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Fitna</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="content">
+        <h1>Welcome back</h1>
+        <h2>Log in to continue your fitness journey now</h2>
+        <form action="#">
+            <div class="info">
+                <label class="label" for="email">Email Address:</label> <br>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="info">
+                <label class="label" for="password">Password:</label> <br>
+                <input type="text" id="password1" name="password">
+            </div>
+            <button type="button" class="button" id="loginButton" name="loginButton">Log In</button>
+        </form>
+        <p>Don't have an account? <a href="createAccount.html">Sign up</a></p>
+    </div>
+
+    <script>
+
+        document.getElementById("loginButton").addEventListener("click", function (e) {
+            e.preventDefault(); //para di agad mag run ang form
+            //para maaccess ang inputs from form sa html dito sa js
+            const email = document.querySelector('#email').value.trim();
+            const password = document.querySelector('#password1').value.trim();
+
+            if (email === "" || password === "") { //checks if kulang ang input ng user
+                alert("Please complete filling up informations needed"); //mag ppop up pag nag true ang nasa taas
+            } else { //mag rrun if nag false and if statement
+                window.location.href = "home.html"; //mare-redirect sa home nafill upan lahat
+            }
+        });
+    </script>
+</body>
+
+</html>

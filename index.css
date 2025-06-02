@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, #742532 60%, #ffffff00), url(image/indexbg.png);
+    background-position: left, bottom right;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100%, 85vh;
+}
+
+.content {
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    translate: -50% -50%;
+    width: 500px;
+    justify-items: center;
+    color: #ffffff;
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 14px;
+    color: #cecbcb; 
+    margin-bottom: 40px;
+}
+
+p {
+    font-size: 13px;
+}
+
+.info .label {
+    float: left;
+    font-size: 15px;
+}
+
+.info input {
+    width: 450px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #f4f4f465;
+    border: none;
+    margin-top: 5px;
+}
+
+#email, #password2 {
+    margin-bottom: 15px;
+}
+
+#password1, #confirmP {
+    margin-bottom: 30px;
+}
+
+.button {
+    width: 460px;
+    padding: 12px;
+    border-radius: 25px;
+    background-color: #fcd581;
+    font-size: 21px;
+    color: #650d1b;
+    border: none;
+    margin-bottom: 5px;
+}
+
+a {
+    color: #fcd581;
+    text-decoration: underline;
+}
