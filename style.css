@@ -43,3 +43,9 @@ body {
     align-items: center;
     padding: 10px;
 }
+
+img {
+    width: auto;
+    height: 25px;
+    filter: invert(100%);
+}
