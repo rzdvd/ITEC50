@@ -6,12 +6,17 @@
 }
 
 body {
-    display: flex;
-    flex-direction: column;
     height: 100vh;
     width: 100vw;
     background-color: #650d1b;
     
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
 }
 
 .nav {
@@ -48,4 +53,26 @@ img {
     width: auto;
     height: 25px;
     filter: invert(100%);
+}
+
+.tags {
+  margin: 10px 0;
+}
+
+.day-tabs {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  overflow-x: auto;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  gap: 0px;
+}
+
+.day-tab {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+
 }
