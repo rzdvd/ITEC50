@@ -1,30 +1,36 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
 }
 
 body {
-    height: 100vh;
-    width: 100vw;
-    background-color: #650d1b;
-    
+  height: 100vh;
+  width: 100vw;
+  background-color: #650d1b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
 }
 
 .nav {
-    display: flex;
-    flex-direction: column;
-    background-color: #510c17;
-    width: 5%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #510c17;
+  width: 5%;
+  height: 100%;
+  position: fixed;
+  left: 0;
 }
 
 .nav ul {
@@ -43,16 +49,16 @@ body {
 }
 
 .nav ul li a div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
 }
 
 img {
-    width: auto;
-    height: 25px;
-    filter: invert(100%);
+  width: auto;
+  height: 25px;
+  filter: invert(100%);
 }
 
 .tags {
@@ -75,4 +81,187 @@ img {
   border-radius: 8px;
   cursor: pointer;
 
+}
+
+.container1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  height: 55%;
+  background-color: #843D49;
+  border-radius: 30px;
+  font-family: "Poppins", sans-serif;
+  gap: 25px;
+}
+
+.calendar {
+  width: 40%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.header button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff00;
+  aspect-ratio: 1/1;
+  border: none;
+  font-size: 22px;
+  color: #fff;
+}
+
+.monthYear {
+  text-align: center;
+  width: 130px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 16px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 2px;
+}
+
+.day {
+  text-align: center;
+  padding: 5px;
+  color: #CECBCB;
+  font-weight: 500;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  margin: auto;
+  cursor: pointer;
+  font-weight: 600;
+  aspect-ratio: 1/1;
+  width: 35px;
+  border-radius: 10px;
+  transition: 0.2s;
+  color: #fff;
+}
+
+.date:hover,
+.date.active {
+  background-color: #FCD581;
+}
+
+.date.inactive {
+  color: #d1d1d1
+}
+
+.date.inactive:hover {
+  color: #fff;
+}
+
+.verticalLine {
+  width: 1px;
+  height: 92%;
+  background-color: #fff;
+}
+
+.history {
+  height: 85%;
+  width: 50%;
+  color: #fff;
+}
+
+.history h1 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.completedWOs {
+  height: 90%;
+  width: 100%;
+  overflow: auto;
+  padding-right: 15px;
+}
+
+.completedWO {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+}
+
+.completedWO p {
+  background-color: #f2ebeb46;
+  border-radius: 20px;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.completedWOs::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 15px;
+}
+
+.completedWOs::-webkit-scrollbar-thumb {
+  background-color: #650d1c87;
+  border-radius: 15px;
+}
+
+.completedWOs::-webkit-scrollbar-track {
+  color: #FCD581;
+}
+
+.container2 {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  width: 85%;
+  height: 30%;
+  margin-top: 20px;
+}
+
+.box {
+  background-color: #843D49;
+  aspect-ratio: 1/1;
+  height: 100%;
+  border-radius: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 13px;
+}
+
+.data{
+  height: 70%;
+  align-content: center;
+  font-weight: 700;
+  font-size: 45px;
+}
+
+.box p {
+  font-size: 13px;
+  font-weight: 500;
 }
