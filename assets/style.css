@@ -265,3 +265,16 @@ img {
   font-size: 13px;
   font-weight: 500;
 }
+
+.exercise-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.info {
+  flex: 1;
+}
+
