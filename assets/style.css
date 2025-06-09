@@ -1,3 +1,4 @@
+/* GLOBAL STYLES */
 * {
   margin: 0;
   padding: 0;
@@ -10,18 +11,8 @@ body {
   width: 100vw;
   background-color: #650d1b;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-}
 
 .nav {
   display: flex;
@@ -29,7 +20,6 @@ body {
   background-color: #510c17;
   width: 5%;
   height: 100%;
-  position: fixed;
   left: 0;
 }
 
@@ -55,12 +45,21 @@ body {
   padding: 10px;
 }
 
-img {
+.nav img {
   width: auto;
   height: 25px;
   filter: invert(100%);
 }
 
+/* END OF GLOBAL STYLES */
+
+
+/* PLANS PAGE STYLES */
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
 .tags {
   margin: 10px 0;
 }
@@ -81,6 +80,18 @@ img {
   border-radius: 8px;
   cursor: pointer;
 
+}
+
+/* HISTORY PAGE STYLES */
+
+#history {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .container1 {
