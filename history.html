@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -20,7 +21,7 @@
             <li>
                 <a href="home.html">
                     <div>
-                        <img src="image/home-icon.webp" alt="">
+                        <img src="assets/images/home-icon.webp" alt="">
                         <p>Home</p>
                     </div>
                 </a>
@@ -28,7 +29,7 @@
             <li>
                 <a href="workouts.html">
                     <div>
-                        <img src="image/workouts-icon.webp" alt="">
+                        <img src="assets/images/workouts-icon.webp" alt="">
                         <p>Workouts</p>
                     </div>
                 </a>
@@ -36,7 +37,7 @@
             <li>
                 <a href="plans.html">
                     <div>
-                        <img src="image/plans-icon.webp" alt="">
+                        <img src="assets/images/plans-icon.webp" alt="">
                         <p>Plans</p>
                     </div>
                 </a>
@@ -44,7 +45,7 @@
             <li>
                 <a href="history.html">
                     <div>
-                        <img src="image/history-icon.webp" alt="">
+                        <img src="assets/images/history-icon.webp" alt="">
                         <p>History</p>
                     </div>
                 </a>
@@ -52,7 +53,7 @@
             <li>
                 <a href="progress.html">
                     <div>
-                        <img src="image/progress-icon.webp" alt="">
+                        <img src="assets/images/progress-icon.webp" alt="">
                         <p>Progress</p>
                     </div>
                 </a>
@@ -60,12 +61,78 @@
             <li>
                 <a href="profile.html">
                     <div>
-                        <img src="image/profile-icon.svg" alt="">
+                        <img src="assets/images/profile-icon.svg" alt="">
                         <p>Profile</p>
                     </div>
                 </a>
             </li>
         </ul>
     </div>
+    <main id="history">
+        <div class="container1">
+        <div class="calendar">
+            <div class="header">
+                <button id="prevBtn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="monthYear" id="monthYear"></div>
+                <button id="nextBtn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="days">
+                <div class="day">Mon</div>
+                <div class="day">Tue</div>
+                <div class="day">Wed</div>
+                <div class="day">Thu</div>
+                <div class="day">Fri</div>
+                <div class="day">Sat</div>
+                <div class="day">Sun</div>
+            </div>
+            <div class="dates" id="dates"></div>
+        </div>
+        <div class="verticalLine"></div>
+        <div class="history">
+            <h1>History</h1>
+            <div class="completedWOs" id="completedWOs">
+                <div class="completedWO">
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                    <p>Side-Lying Leg Raise</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="box">
+            <div class="data">45</div>
+            <p>Total Number of Days Active</p>
+        </div>
+        <div class="box">
+            <div class="data">315</div>
+            <p>Total Number of Completed Workouts</p>
+        </div>
+        <div class="box">
+            <div class="data">1320</div>
+            <p>Total Number of Completed Reps</p>
+        </div>
+        <div class="box">
+            <div class="data">7.5h</div>
+            <p>Total Number of Duration of Completed Workouts</p>
+        </div>
+    </div>
+    </main>
+    
+    <script src="assets/script.js"></script>
 </body>
 </html>
