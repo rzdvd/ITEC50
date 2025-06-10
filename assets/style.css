@@ -4,7 +4,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  outline: 1px solid red;
 }
 
 body {
@@ -93,7 +92,7 @@ body {
   border-radius: 10px;
   overflow-x: auto;
   padding: 2rem;
-  margin-bottom: 15px;
+  padding-bottom: 0;
 }
 
 .day-tab {
@@ -101,7 +100,43 @@ body {
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
+  background-color: #742532;
+  color: white;
+  border: none;
 
+}
+
+.day-tab p {
+  padding-bottom: 5px;
+}
+
+.day-tab.active {
+  background-color: #843D49;
+  color: white;
+  border: none;
+}
+
+#workout-plan {
+  height: 65vh;
+  background-color: #843D49;
+  border-radius: 10px;
+  color: white;
+  margin: -10px 2rem 0 2rem;
+  padding: 1rem;
+}
+
+#workout-plan .head {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#workout-plan .label {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  margin-right: -4rem;
+  align-items: flex-end;
 }
 
 /* HISTORY PAGE STYLES */
@@ -305,6 +340,80 @@ body {
 
 .info {
   flex: 1;
+}
+
+/*PROGRESS PAGE STYLES */
+#progress {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 2%;
+}
+
+.chartContainer {
+  width: 95%;
+  height: 500px;
+}
+
+#progress-chart {
+  background: #843D49;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 2rem;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  height: 30%;
+  margin-top: 2rem;
+}
+
+.measurements {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 60%;
+  height: 40vh;
+  background-color: #843D49;
+  color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  overflow: auto;
+  padding-right: 15px;
+
+}
+
+.measurements::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 15px;
+}
+
+.measurements .head {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.log {
+  background-color: #650d1b;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+hr {
+  height: 1px;
+  background-color: #fff;
+  margin: 1rem 0;
+}
+
+.measurements .body-part {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
 }
 
 /* HOME PAGE STYLES */

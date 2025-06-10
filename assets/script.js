@@ -1,3 +1,113 @@
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('progress_data.php')
+    .then(response => response.json())
+    .then(data => {
+        const ctx = document.getElementById('progress-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Weight',
+                    data: data.weights,
+                    borderColor: '#fff',
+                    backgroundColor: '#843d49',
+                    fill: false,
+                    pointRadius: 5,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'My Weight',
+                        color: '#fff',
+                        font: {
+                            size: 24
+                        },
+                        align: 'start',
+                        padding: {
+                            bottom: 30
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#fff',
+                            font: {
+                                size: 14
+                            }
+                        },
+                        grid: {
+                            color: '#f8f8f8'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Date',
+                            color:'#fff'
+                        },
+                    },
+                    y: {
+                        min: 49.4,
+                        max: 50.4,
+                        ticks: {
+                            stepSize: 0.1,
+                            color: '#fff',
+                            font: {
+                                size: 14
+                            }
+                        },
+                        grid: {
+                            color: '#f8f8f8'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Weight (kg)',
+                            color: '#fff'
+                        }
+                    }
+                }
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching progress data:', error);
+    });
+});
+
+/* PLANS */
+
+function setActive(button) {
+    const buttons = document.querySelectorAll(".day-tab");
+    buttons.forEach(btn => day-tab.classList.remove("active"));
+
+    button.classList.add("active");
+}
+
+
+document.querySelectorAll(".day-tab").forEach(button => {
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".day-tab").forEach(btn => {
+            btn.classList.remove("active");
+        });
+        button.classList.add("active");
+
+        const day = button.getAttribute("data-day");
+        loadWorkout(day);
+    });
+});
+
+/* HISTORY */
+
+window.onload = () => loadWorkout ("tue"); 
 const monthYearElement = document.getElementById('monthYear');
 const datesElement = document.getElementById('dates');
 const prevBtn = document.getElementById('prevBtn');
@@ -50,3 +160,8 @@ nextBtn.addEventListener('click', () => {
 })
 
 updateCalendar();
+
+/* PROGRESS */
+
+
+
