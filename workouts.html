@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="assets/workouts-styles.css">
+    <title>Workouts</title>
 </head>
 <body>
     <div class="nav">
@@ -68,7 +68,179 @@
         </ul>
     </div>
     <div class="content">
-        
+        <div class="search-bar">
+            <input type="text" placeholder="Enter Keyword">
+            <button disabled>Search</button>
+        </div>
+        <div class="workout-main">
+            <h2 class="section-title">TARGET BODY PART</h2>
+            <div class="carousel-container">
+                <button class="carousel-arrow left" id="prevFocus">
+                    <img src="assets/images/arrow_left.svg" alt="Previous">
+                </button>
+                <div class="carousel-focus">
+                    <div class="carousel-img-stack" id="carouselImgStack"></div>
+                    <img id="focusImage" class="carousel-main-img" src="assets/images/back.jpg" alt="Back">
+                    <div class="focus-label" id="focusLabel">Back</div>
+                </div>
+                <button class="carousel-arrow right" id="nextFocus">
+                    <img src="assets/images/arrow_right.svg" alt="Next">
+                </button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <div class="exercise-list-section">
+                <div class="exercise-list-title" id="exerciseListTitle">Back</div>
+                <div class="exercise-list" id="exerciseList">
+                    <!-- JS will populate exercises here -->
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        // Focus data
+        const focuses = [
+            {
+                name: "Back",
+                img: "assets/images/back.jpg",
+                exercises: [
+                    "Pull Up",
+                    "Barbell Deadlift",
+                    "Lat Pulldown",
+                    "Back Extension",
+                    "T-Bar Row"
+                ]
+            },
+            {
+                name: "Chest",
+                img: "assets/images/chest.jpg",
+                exercises: [
+                    "Chest Press",
+                    "Lying Chest Overhead Extension",
+                    "Incline Dumbbell Bench Chest Press",
+                    "Push Up",
+                    "Standing Cable Chest Press"
+                ]
+            },
+            {
+                name: "Core",
+                img: "assets/images/core.jpg",
+                exercises: [
+                    "Sit Up",
+                    "Weighted Russian Twist",
+                    "Lying Leg Raise",
+                    "Plank",
+                    "Crunch"
+                ]
+            },
+            {
+                name: "Arms",
+                img: "assets/images/arms.jpg",
+                exercises: [
+                    "Bent Over Double Arm Tricep Kickback",
+                    "Standing Bicep Cable Curl",
+                    "Tricep Cable Rope Pull Down",
+                    "Seated Dumbbell Bicep Curl",
+                    "Bench Tricep Dip"
+                ]
+            },
+            {
+                name: "Legs",
+                img: "assets/images/legs.jpg",
+                exercises: [
+                    "Barbell Overhead Squat",
+                    "Leg Press Machine Calf Raise",
+                    "Lying Leg Curl",
+                    "Jump Rope",
+                    "Agility Ladder Drill"
+                ]
+            },
+            {
+                name: "Glutes",
+                img: "assets/images/glutes.jpg",
+                exercises: [
+                    "Barbell Kneeling Squat",
+                    "Glute Bridge",
+                    "Dumbbell Lunges",
+                    "Jump Squat",
+                    "Resistance Band Glute Kickback"
+                ]
+            }
+        ];
+
+        let currentFocus = 0;
+
+        function updateFocus() {
+            const focus = focuses[currentFocus];
+            document.getElementById('focusImage').src = focus.img;
+            document.getElementById('focusImage').alt = focus.name;
+            document.getElementById('focusLabel').textContent = focus.name;
+            document.getElementById('exerciseListTitle').textContent = focus.name;
+            // Populate exercises
+            const list = document.getElementById('exerciseList');
+            list.innerHTML = '';
+            focus.exercises.forEach(ex => {
+                const row = document.createElement('div');
+                row.className = 'exercise-row';
+                row.innerHTML = `
+                    <span class="exercise-name">${ex}</span>
+                    <button class="view-btn" disabled>view</button>
+                `;
+                list.appendChild(row);
+            });
+            // Update dots
+            const dots = document.getElementById('carouselDots');
+            dots.innerHTML = '';
+            for (let i = 0; i < focuses.length; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'dot' + (i === currentFocus ? ' active' : '');
+                dot.onclick = () => { currentFocus = i; updateFocus(); };
+                dots.appendChild(dot);
+            }
+            // Update carousel background images
+            const stack = document.getElementById('carouselImgStack');
+            stack.innerHTML = '';
+            // Show up to 2 left and 2 right images
+            const left2 = focuses[(currentFocus - 2 + focuses.length) % focuses.length];
+            const left1 = focuses[(currentFocus - 1 + focuses.length) % focuses.length];
+            const right1 = focuses[(currentFocus + 1) % focuses.length];
+            const right2 = focuses[(currentFocus + 2) % focuses.length];
+            // Far left
+            let imgFarLeft = document.createElement('img');
+            imgFarLeft.src = left2.img;
+            imgFarLeft.alt = left2.name;
+            imgFarLeft.className = 'far-left';
+            stack.appendChild(imgFarLeft);
+            // Left
+            let imgLeft = document.createElement('img');
+            imgLeft.src = left1.img;
+            imgLeft.alt = left1.name;
+            imgLeft.className = 'left';
+            stack.appendChild(imgLeft);
+            // Right
+            let imgRight = document.createElement('img');
+            imgRight.src = right1.img;
+            imgRight.alt = right1.name;
+            imgRight.className = 'right';
+            stack.appendChild(imgRight);
+            // Far right
+            let imgFarRight = document.createElement('img');
+            imgFarRight.src = right2.img;
+            imgFarRight.alt = right2.name;
+            imgFarRight.className = 'far-right';
+            stack.appendChild(imgFarRight);
+        }
+
+        document.getElementById('prevFocus').onclick = function() {
+            currentFocus = (currentFocus - 1 + focuses.length) % focuses.length;
+            updateFocus();
+        };
+        document.getElementById('nextFocus').onclick = function() {
+            currentFocus = (currentFocus + 1) % focuses.length;
+            updateFocus();
+        };
+
+        // Initial render
+        updateFocus();
+    </script>
 </body>
 </html>

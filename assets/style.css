@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+
 }
 
 body {
@@ -161,6 +161,7 @@ body {
   height: 55%;
   background-color: #843D49;
   border-radius: 30px;
+  font-family: "Poppins", sans-serif;
   gap: 25px;
 }
 
@@ -294,6 +295,10 @@ body {
   border-radius: 15px;
 }
 
+.completedWOs::-webkit-scrollbar-track {
+  color: #FCD581;
+}
+
 .container2 {
   position: relative;
   display: flex;
@@ -419,33 +424,25 @@ hr {
 /* HOME PAGE STYLES */
 
 .content {
+  height: 100%;
   width: 100%;
   align-items: center;
-  justify-items: center;
   gap: 20px;
-  overflow-x: hidden;
-  padding: 30px;
+  margin-left: 5%;
 }
 
 .upperPart {
   display: flex;
-  height: 55%;
+  height: 50%;
   width: 80%;
   justify-content: center;
   align-items: center;
-  outline: 1px solid red;
 }
 
 .leftSide {
-  background: linear-gradient(to bottom right, #000000ab, #ffffff00), url('images/homePic.jpg');
-  background-size: cover;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  border-radius: 30px;
-  width: 65%;
+  width: 55%;
   height: 100%;
   color: #fff;
-  padding: 25px;
 }
 
 #fitna {
@@ -459,20 +456,20 @@ hr {
 
 #homePic {
   height: 76%;
-  width: 100%;
+  width: 80%;
   border-radius: 31px;
 }
 
 .rightSide {
   height: 100%;
-  width: 35%;
+  width: 45%;
 }
 
 .todaysPlan {
   background-color: #843D49;
-  width: 90%;
+  width: 70%;
   height: 100%;
-  justify-self: right;
+  justify-self: center;
   border-radius: 30px;
   color: #fff;
   align-content: center;
@@ -504,9 +501,8 @@ hr {
 .middlePart {
   margin-top: 25px;
   width: 80%;
-  height: 20%;
+  height: 18%;
   justify-items: center;
-    outline: 1px solid red;
 }
 
 .weeksActivity {
@@ -514,18 +510,17 @@ hr {
   flex-direction: column;
   align-items: center;
   padding: 13px;
-  width: 100%;
+  width: 80%;
   height: 100%;
   background-color: #843D49;
   border-radius: 30px;
 }
 
 .daysActivity {
-  width: 95%;
+  width: 90%;
   height: 100%;
-  margin-top: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .weeksActivity h1 {
@@ -560,15 +555,13 @@ hr {
 }
 
 .bottomPart {
+  background-color: yellowgreen;
   display: flex;
-  height: 50%;
+  height: 40%;
   width: 80%;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
-  margin-bottom: 50px;
-  color: #fff;
-  outline: 1px solid red;
 }
 
 .scrollableMenu {
@@ -578,7 +571,7 @@ hr {
 }
 
 .bodyPartImages {
-  height: inherit;
+  height: 100%;
   width: 100%;
   background-color: violet;
   display: flex;
@@ -594,46 +587,38 @@ hr {
   border-radius: 20px;
 }
 
-
-
 #bpi1 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/arms.jpg);
+  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
   background-repeat: no-repeat, no-repeat;
-  background-size: cover, 100% 100%;
-  background-position: left;
+  background-position: bottom, left;
 }
 
 #bpi2 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/glutes.jpg);
+  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
 
 #bpi3 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/core.jpg);
+  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
 
 #bpi4 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/legs.jpg);
+  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
 
 #bpi5 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/back.jpg);
+  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
 
 #bpi6 {
-  background: linear-gradient(#000000, #ffffff00), url(images/chest.jpg);
+  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
