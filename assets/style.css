@@ -424,25 +424,33 @@ hr {
 /* HOME PAGE STYLES */
 
 .content {
-  height: 100%;
   width: 100%;
   align-items: center;
+  justify-items: center;
   gap: 20px;
-  margin-left: 5%;
+  overflow-x: hidden;
+  padding: 30px;
 }
 
 .upperPart {
   display: flex;
-  height: 50%;
+  height: 55%;
   width: 80%;
   justify-content: center;
   align-items: center;
+  outline: 1px solid red;
 }
 
 .leftSide {
-  width: 55%;
+  background: linear-gradient(to bottom right, #000000ab, #ffffff00), url('images/homePic.jpg');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  border-radius: 30px;
+  width: 65%;
   height: 100%;
   color: #fff;
+  padding: 25px;
 }
 
 #fitna {
@@ -456,20 +464,20 @@ hr {
 
 #homePic {
   height: 76%;
-  width: 80%;
+  width: 100%;
   border-radius: 31px;
 }
 
 .rightSide {
   height: 100%;
-  width: 45%;
+  width: 35%;
 }
 
 .todaysPlan {
   background-color: #843D49;
-  width: 70%;
+  width: 90%;
   height: 100%;
-  justify-self: center;
+  justify-self: right;
   border-radius: 30px;
   color: #fff;
   align-content: center;
@@ -501,8 +509,9 @@ hr {
 .middlePart {
   margin-top: 25px;
   width: 80%;
-  height: 18%;
+  height: 20%;
   justify-items: center;
+    outline: 1px solid red;
 }
 
 .weeksActivity {
@@ -510,17 +519,18 @@ hr {
   flex-direction: column;
   align-items: center;
   padding: 13px;
-  width: 80%;
+  width: 100%;
   height: 100%;
   background-color: #843D49;
   border-radius: 30px;
 }
 
 .daysActivity {
-  width: 90%;
+  width: 95%;
   height: 100%;
+  margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .weeksActivity h1 {
@@ -555,13 +565,15 @@ hr {
 }
 
 .bottomPart {
-  background-color: yellowgreen;
   display: flex;
-  height: 40%;
+  height: 50%;
   width: 80%;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
+  margin-bottom: 50px;
+  color: #fff;
+  outline: 1px solid red;
 }
 
 .scrollableMenu {
@@ -571,7 +583,7 @@ hr {
 }
 
 .bodyPartImages {
-  height: 100%;
+  height: inherit;
   width: 100%;
   background-color: violet;
   display: flex;
@@ -587,38 +599,46 @@ hr {
   border-radius: 20px;
 }
 
+
+
 #bpi1 {
-  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/arms.jpg);
   background-repeat: no-repeat, no-repeat;
-  background-position: bottom, left;
+  background-size: cover, 100% 100%;
+  background-position: left;
 }
 
 #bpi2 {
-  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/glutes.jpg);
   background-repeat: no-repeat, no-repeat;
+    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
 
 #bpi3 {
-  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/core.jpg);
   background-repeat: no-repeat, no-repeat;
+    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
 
 #bpi4 {
-  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/legs.jpg);
   background-repeat: no-repeat, no-repeat;
+    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
 
 #bpi5 {
-  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(images/back.jpg);
   background-repeat: no-repeat, no-repeat;
+    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
 
 #bpi6 {
-  background: linear-gradient(#000000, #ffffff00), url(images/arms.jpg);
+  background: linear-gradient(#000000, #ffffff00), url(images/chest.jpg);
   background-repeat: no-repeat, no-repeat;
+    background-size: cover, 100% 100%;
   background-position: bottom, left;
 }
