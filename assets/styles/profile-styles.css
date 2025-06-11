@@ -1,0 +1,274 @@
+
+
+/* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #650d1b;
+    display: flex;
+}
+
+.nav {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: #510c17;
+    width: 5%;
+    height: 100%;
+    left: 0;
+}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav ul li a div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.nav img {
+    width: auto;
+    height: 25px;
+    filter: invert(100%);
+}
+
+/* END OF GLOBAL STYLES */
+
+
+
+/* PROFILE STYLES */
+.content {
+    margin-left: 5%;
+    width: 95%;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.profile-header {
+  width: 100%;
+  height: 250px;
+  background-color: #843d49;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header-bg img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.profile-header-content {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: -40px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #650d1b;
+  object-fit: cover;
+  background-color: #fff;
+}
+
+.profile-header .info {
+  margin-left: 20px;
+  color: #f0f0f0;
+}
+
+.profile-header .info h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.profile-header .info p {
+  margin: 4px 0 0 0;
+  color: #dfbfbf;
+}
+
+.buttons {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.buttons button {
+  background-color: #9b2d42;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buttons button:hover {
+  background-color: #b33b50;
+}
+
+
+
+
+.profile-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+.profile-section p {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #fff;
+}
+
+.profile-section p img {
+    margin-right: 12px;
+    height: 64px;
+    width: 64px;
+    object-fit: contain;
+}
+
+.profile-content h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+    font-size: 50px;
+}
+
+.profile-section {
+    width: 30%;
+    height: 50%;
+    background-color: #843d49;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* END OF PROFILE STYLES */
+
+/* EDIT PROFILE STYLES */
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #934b5e;
+  border-radius: 20px;
+  padding: 32px 32px 16px 32px;
+  width: 350px;
+  max-width: 90vw;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-pictures {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.profile-pic-option {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.profile-pic-option.selected {
+  border: 3px solid #fff176;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-profile-form label {
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.edit-profile-form input,
+.edit-profile-form select {
+  border-radius: 12px;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 2px;
+  font-size: 15px;
+  background: #fff;
+  color: #333;
+  outline: none;
+}
+
+.edit-profile-form button {
+  margin-top: 12px;
+  align-self: flex-end;
+  background: #7b2236;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-profile-form button:hover {
+  background: #b33b50;
+}
+
+/* END OF EDIT PROFILE STYLES */
