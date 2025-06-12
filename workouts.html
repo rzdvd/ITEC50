@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/workouts-styles.css">
+    <link rel="stylesheet" href="assets/workouts-styles.css">
     <title>Workouts</title>
 </head>
 <body>
@@ -68,10 +68,6 @@
         </ul>
     </div>
     <div class="content">
-        <div class="search-bar">
-            <input type="text" placeholder="Enter Keyword">
-            <button disabled>Search</button>
-        </div>
         <div class="workout-main">
             <h2 class="section-title">TARGET BODY PART</h2>
             <div class="carousel-container">
@@ -91,13 +87,49 @@
             <div class="exercise-list-section">
                 <div class="exercise-list-title" id="exerciseListTitle">Back</div>
                 <div class="exercise-list" id="exerciseList">
-                    <!-- JS will populate exercises here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="exerciseModal" class="exercise-modal">
+        <div class="exercise-modal-content">
+            <div class="exercise-modal-images">
+                <img id="modalImg1" src="assets/images/sample-exercise.jpg" alt="Exercise Image">
+                <img id="modalImg2" src="assets/images/sample-exercise.jpg" alt="Exercise Image">
+            </div>
+            <div class="exercise-modal-details">
+                <h2 id="modalTitle">Dumbell Row</h2>
+                <div class="exercise-modal-info">
+                    <div>
+                        <strong>Focus</strong>
+                        <span id="modalFocus">Back</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <strong>Equipment/s</strong>
+                        <span id="modalEquip">Dumbell</span>
+                    </div>
+                    <div>
+                        <strong>Reps</strong>
+                        <span id="modalReps">##</span>
+                    </div>
+                    <div>
+                        <strong>Duration</strong>
+                        <span id="modalDuration">##</span>
+                    </div>
+                    <div>
+                        <strong>Sets</strong>
+                        <span id="modalSets">##</span>
+                    </div>
+                </div>
+                <div class="exercise-modal-actions">
+                    <button id="addWorkoutBtn">add workout</button>
+                    <button id="closeModalBtn" class="return-btn">return</button>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        // Focus data
         const focuses = [
             {
                 name: "Back",
@@ -166,6 +198,284 @@
                 ]
             }
         ];
+        
+        const exerciseDetails = {
+            "Pull Up": {
+                focus: "Back",
+                equipment: "Pull-up Bar",
+                reps: "10",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Barbell Deadlift": {
+                focus: "Back",
+                equipment: "Barbell",
+                reps: "8",
+                duration: "40s",
+                sets: "4",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Lat Pulldown": {
+                focus: "Back",
+                equipment: "Lat Pulldown Machine",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Back Extension": {
+                focus: "Back",
+                equipment: "Back Extension Bench",
+                reps: "15",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "T-Bar Row": {
+                focus: "Back",
+                equipment: "T-Bar",
+                reps: "10",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+
+            "Chest Press": {
+                focus: "Chest",
+                equipment: "Chest Press Machine",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Lying Chest Overhead Extension": {
+                focus: "Chest",
+                equipment: "Dumbbell",
+                reps: "10",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Incline Dumbbell Bench Chest Press": {
+                focus: "Chest",
+                equipment: "Dumbbell",
+                reps: "10",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Push Up": {
+                focus: "Chest",
+                equipment: "Bodyweight",
+                reps: "15",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Standing Cable Chest Press": {
+                focus: "Chest",
+                equipment: "Cable Machine",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+
+            "Sit Up": {
+                focus: "Core",
+                equipment: "Mat",
+                reps: "20",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Weighted Russian Twist": {
+                focus: "Core",
+                equipment: "Medicine Ball",
+                reps: "16",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Lying Leg Raise": {
+                focus: "Core",
+                equipment: "Mat",
+                reps: "15",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Plank": {
+                focus: "Core",
+                equipment: "Mat",
+                reps: "-",
+                duration: "60s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Crunch": {
+                focus: "Core",
+                equipment: "Mat",
+                reps: "20",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+
+            "Bent Over Double Arm Tricep Kickback": {
+                focus: "Arms",
+                equipment: "Dumbbell",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Standing Bicep Cable Curl": {
+                focus: "Arms",
+                equipment: "Cable Machine",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Tricep Cable Rope Pull Down": {
+                focus: "Arms",
+                equipment: "Cable Machine",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Seated Dumbbell Bicep Curl": {
+                focus: "Arms",
+                equipment: "Dumbbell",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Bench Tricep Dip": {
+                focus: "Arms",
+                equipment: "Bench",
+                reps: "15",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+
+            "Barbell Overhead Squat": {
+                focus: "Legs",
+                equipment: "Barbell",
+                reps: "10",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Leg Press Machine Calf Raise": {
+                focus: "Legs",
+                equipment: "Leg Press Machine",
+                reps: "15",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Lying Leg Curl": {
+                focus: "Legs",
+                equipment: "Leg Curl Machine",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Jump Rope": {
+                focus: "Legs",
+                equipment: "Jump Rope",
+                reps: "-",
+                duration: "60s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Agility Ladder Drill": {
+                focus: "Legs",
+                equipment: "Agility Ladder",
+                reps: "-",
+                duration: "60s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+
+            "Barbell Kneeling Squat": {
+                focus: "Glutes",
+                equipment: "Barbell",
+                reps: "10",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Glute Bridge": {
+                focus: "Glutes",
+                equipment: "Mat",
+                reps: "15",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Dumbbell Lunges": {
+                focus: "Glutes",
+                equipment: "Dumbbell",
+                reps: "12",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Jump Squat": {
+                focus: "Glutes",
+                equipment: "Bodyweight",
+                reps: "15",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            },
+            "Resistance Band Glute Kickback": {
+                focus: "Glutes",
+                equipment: "Resistance Band",
+                reps: "15",
+                duration: "30s",
+                sets: "3",
+                img1: "assets/images/sample-exercise.jpg",
+                img2: "assets/images/sample-exercise.jpg"
+            }
+        };
 
         let currentFocus = 0;
 
@@ -183,7 +493,7 @@
                 row.className = 'exercise-row';
                 row.innerHTML = `
                     <span class="exercise-name">${ex}</span>
-                    <button class="view-btn" disabled>view</button>
+                    <button class="view-btn">view</button>
                 `;
                 list.appendChild(row);
             });
@@ -204,30 +514,33 @@
             const left1 = focuses[(currentFocus - 1 + focuses.length) % focuses.length];
             const right1 = focuses[(currentFocus + 1) % focuses.length];
             const right2 = focuses[(currentFocus + 2) % focuses.length];
-            // Far left
+
             let imgFarLeft = document.createElement('img');
             imgFarLeft.src = left2.img;
             imgFarLeft.alt = left2.name;
             imgFarLeft.className = 'far-left';
             stack.appendChild(imgFarLeft);
-            // Left
+
             let imgLeft = document.createElement('img');
             imgLeft.src = left1.img;
             imgLeft.alt = left1.name;
             imgLeft.className = 'left';
             stack.appendChild(imgLeft);
-            // Right
+
             let imgRight = document.createElement('img');
             imgRight.src = right1.img;
             imgRight.alt = right1.name;
             imgRight.className = 'right';
             stack.appendChild(imgRight);
-            // Far right
+
             let imgFarRight = document.createElement('img');
             imgFarRight.src = right2.img;
             imgFarRight.alt = right2.name;
             imgFarRight.className = 'far-right';
             stack.appendChild(imgFarRight);
+
+            // Attach view listeners after rendering
+            attachViewListeners();
         }
 
         document.getElementById('prevFocus').onclick = function() {
@@ -239,7 +552,36 @@
             updateFocus();
         };
 
-        // Initial render
+        // Modal logic
+        function attachViewListeners() {
+            document.querySelectorAll('.view-btn').forEach((btn) => {
+                btn.onclick = function() {
+                    // Get exercise name from the row
+                    const exName = btn.parentElement.querySelector('.exercise-name').textContent;
+                    const ex = exerciseDetails[exName] || {
+                        focus: "Unknown", equipment: "Unknown", reps: "##", duration: "##", sets: "##",
+                        img1: "assets/images/sample-exercise.jpg", img2: "assets/images/sample-exercise.jpg"
+                    };
+                    document.getElementById('modalTitle').textContent = exName;
+                    document.getElementById('modalFocus').textContent = ex.focus;
+                    document.getElementById('modalEquip').textContent = ex.equipment;
+                    document.getElementById('modalReps').textContent = ex.reps;
+                    document.getElementById('modalDuration').textContent = ex.duration;
+                    document.getElementById('modalSets').textContent = ex.sets;
+                    document.getElementById('modalImg1').src = ex.img1;
+                    document.getElementById('modalImg2').src = ex.img2;
+                    document.getElementById('exerciseModal').style.display = 'flex';
+                };
+            });
+        }
+
+        document.getElementById('closeModalBtn').onclick = function() {
+            document.getElementById('exerciseModal').style.display = 'none';
+        };
+        document.getElementById('exerciseModal').onclick = function(e) {
+            if (e.target === this) this.style.display = 'none';
+        };
+        
         updateFocus();
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/profile-styles.css">
+    <link rel="stylesheet" href="assets/profile-styles.css">
     <title>Document</title>
 </head>
 <body>
@@ -74,7 +74,7 @@
                 <img src="/assets/images/profile-background.png" alt="Cover Image" />
             </div>
             <div class="profile-header-content">
-                <img class="avatar" src="/assets/images/avatar.jpg" alt="Avatar" />
+                <img class="avatar" src="/assets/images/avatar.jpg" alt=" " />
                 <div class="info">
                     <h1 id="main-username">username_123</h1>
                     <p id="main-fullname">Full name</p>
@@ -116,10 +116,10 @@
             <hr>
             <form class="edit-profile-form">
             <label>Username
-                <input type="text" id="edit-username" value="Username123_mema">
+                <input type="text" id="edit-username" value=" ">
             </label>
             <label>Name
-                <input type="text" id="edit-fullname" value="Yort Hermoso">
+                <input type="text" id="edit-fullname" value=" ">
             </label>
             <label>Gender
                 <select id="edit-gender">
@@ -149,7 +149,7 @@
 
         // Track selected avatar
         let selectedAvatarSrc = document.querySelector('.avatar').src;
-        // Highlight the current avatar in the modal (optional)
+        // Highlight the current avatar in the modal
         document.querySelectorAll('.profile-pic-option').forEach(img => {
             if (img.src === selectedAvatarSrc) {
                 img.classList.add('selected');
