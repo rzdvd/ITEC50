@@ -1,5 +1,37 @@
 <?php
-    include("database.php");
+session_start();
+include("database.php");
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = $conn->prepare("SELECT * FROM users WHERE emailAddress = ?");
+    $sql->bind_param('s', $email);
+    $sql->execute();
+    $result = $sql->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['emailAddress'];
+
+        header("Location: home.html");
+        exit;
+    } else {
+        $_SESSION['login_error'] = "Invalid email or password.";
+        header("Location: index.php");
+        exit;
+    }
+}
+
+$error = "";
+if (isset($_SESSION['login_error'])) {
+    $error = $_SESSION['login_error'];
+    unset($_SESSION['login_error']); // Remove it after displaying once
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +48,12 @@
     <div class="content">
         <h1>Welcome back</h1>
         <h2>Log in to continue your fitness journey now</h2>
-        <form action="#">
+
+        <?php if (!empty($error)) { ?>
+            <div class="error-message"><?= htmlspecialchars($error) ?></div>
+        <?php } ?>
+
+        <form action="index.php" method="POST">
             <div class="info">
                 <label class="label" for="email">Email Address:</label> <br>
                 <input type="email" id="email" name="email">
@@ -25,37 +62,28 @@
                 <label class="label" for="password">Password:</label> <br>
                 <input type="password" id="password1" name="password">
             </div>
-            <button type="button" class="button" id="loginButton" name="loginButton">Log In</button>
+            <input type="submit" class="button" id="loginButton" name="loginButton" value="Log In">
         </form>
         <p>Don't have an account? <a href="createAccount.html">Sign up</a></p>
     </div>
+    <img src="assets/images/Fitna.png" alt="">
 
     <script>
+        document.getElementById("loginButton").addEventListener("click", function(e) {
 
-        document.getElementById("loginButton").addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent form submission
-            
             const email = document.querySelector('#email').value.trim();
             const password = document.querySelector('#password1').value.trim();
-            const storedEmail = localStorage.getItem('registeredEmail');
-            const storedPassword = localStorage.getItem('registeredPassword');
 
             if (email === "" || password === "") {
                 alert("Please complete filling up informations needed");
+                e.preventDefault();
                 return;
             }
-
-            if (email === storedEmail && password === storedPassword) {
-                alert("Login successful!");
-                window.location.href = "home.html";
-            } else {
-                alert("Invalid email or password.");
-            }
         });
-
     </script>
 </body>
+
 </html>
 <?php
-    mysqli_close($conn);
+mysqli_close($conn);
 ?>
