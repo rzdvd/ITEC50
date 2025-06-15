@@ -202,7 +202,7 @@ include 'includes/header.php';
                 </select>
                 <div class="sets">
                     <label for="sets">Sets:</label>
-                    <input type="number" id="sets" name="sets" min="1" max="10" required>
+                    <input type="text" id="sets" name="sets" min="1" max="10" required>
                 </div>
                 <div class="reps">
                     <label for="reps">Reps/Duration:</label>

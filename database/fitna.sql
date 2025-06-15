@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2025 at 03:55 PM
+-- Generation Time: Jun 15, 2025 at 05:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,46 @@ SET time_zone = "+00:00";
 --
 -- Database: `fitna`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `measurements`
+--
+
+CREATE TABLE `measurements` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `log_date` date DEFAULT NULL,
+  `waist` decimal(5,2) DEFAULT NULL,
+  `hips` decimal(5,2) DEFAULT NULL,
+  `thigh` decimal(5,2) DEFAULT NULL,
+  `arm` decimal(5,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `measurements`
+--
+
+INSERT INTO `measurements` (`id`, `user_id`, `log_date`, `waist`, `hips`, `thigh`, `arm`) VALUES
+(1, NULL, '2025-06-15', 0.05, NULL, NULL, NULL),
+(2, NULL, '2025-06-15', 0.05, NULL, NULL, NULL),
+(3, NULL, '2025-06-15', 0.05, NULL, NULL, NULL),
+(4, NULL, '2025-06-15', 0.05, NULL, -0.02, NULL),
+(5, NULL, '2025-06-15', NULL, NULL, NULL, NULL),
+(6, NULL, '2025-06-15', NULL, NULL, NULL, NULL),
+(7, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(8, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(9, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(10, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(11, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(12, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(13, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(14, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(15, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(16, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(17, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
+(18, NULL, '2025-06-15', 0.04, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -74,19 +114,50 @@ INSERT INTO `user_history` (`id`, `user_id`, `exercise_name`, `reps`, `sets`, `d
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `weight`
+--
+
+CREATE TABLE `weight` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `log_date` date DEFAULT NULL,
+  `weight` decimal(5,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `weight`
+--
+
+INSERT INTO `weight` (`id`, `user_id`, `log_date`, `weight`) VALUES
+(1, NULL, '2025-06-15', 50.00),
+(2, NULL, '2025-06-14', 50.00),
+(3, NULL, '2025-06-15', 5.00),
+(4, NULL, '2025-06-15', 4.00),
+(5, NULL, '2025-06-15', 4.00),
+(6, NULL, '2025-06-15', 55.00),
+(7, NULL, '2025-06-15', 55.00),
+(8, NULL, '2025-06-15', 50.00),
+(9, NULL, '2025-06-15', 50.00),
+(10, NULL, '2025-06-15', 60.00),
+(11, NULL, '2025-06-15', 60.00),
+(12, NULL, '2025-06-15', 50.00);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `workouts`
 --
 
 CREATE TABLE `workouts` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `image_url` varchar(255) NOT NULL,
-  `image_url2` varchar(255) NOT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `image_url2` varchar(255) DEFAULT NULL,
   `focus` varchar(35) NOT NULL,
-  `equipment` varchar(255) NOT NULL,
-  `reps` varchar(25) NOT NULL,
-  `duration` varchar(25) NOT NULL,
-  `sets` varchar(25) NOT NULL
+  `equipment` varchar(255) DEFAULT NULL,
+  `reps` varchar(25) NOT NULL DEFAULT '0',
+  `duration` varchar(25) DEFAULT '0',
+  `sets` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -94,36 +165,36 @@ CREATE TABLE `workouts` (
 --
 
 INSERT INTO `workouts` (`id`, `name`, `image_url`, `image_url2`, `focus`, `equipment`, `reps`, `duration`, `sets`) VALUES
-(1, 'Pull Ups', 'back1.gif', 'back2.gif', 'back', 'Pull Up Bar', '8-12 reps', '', '3 sets'),
-(2, 'Deadlifts', 'back3.gif', 'back4.gif', 'back', 'Barbell / EZ-Bar', '3-5 reps', '', '3 sets'),
-(3, 'Lat Pulldowns', 'back5.gif', 'back6.gif', 'back', 'Lat Pulldown Machine', '12-15 reps', '', '3 sets'),
-(4, 'Back Extensions', 'back7.gif', 'back8.gif', 'back', 'Bench', '8-12 reps', '', '3 sets'),
-(5, 'T-Bar Rows', 'back9.gif', 'back10.gif', 'back', 'Barbell / EZ-Bar', '8-12 reps', '', '3 sets'),
-(6, 'Chest Press', 'chest1.gif', 'chest2.gif', 'chest', 'Barbell / EZ-Bar and Bench', '6-10 reps', '', '3 sets'),
-(7, 'Lying Chest Overhead Extensions', 'chest3.gif', 'chest4.gif', 'chest', 'Barbell / EZ-Bar and Bench', '10-12 reps', '', '3 sets'),
+(1, 'Pull Up', 'back1.gif', 'back2.gif', 'back', 'Pull Up Bar', '8-12 reps', '', '3 sets'),
+(2, 'Deadlift', 'back3.gif', 'back4.gif', 'back', 'Barbell / EZ-Bar', '3-5 reps', '', '3 sets'),
+(3, 'Lat Pulldown', 'back5.gif', 'back6.gif', 'back', 'Lat Pulldown Machine', '12-15 reps', '', '3 sets'),
+(4, 'Back Extension', 'back7.gif', 'back8.gif', 'back', 'Bench', '8-12 reps', '', '3 sets'),
+(5, 'T-Bar Row', 'back9.gif', 'back10.gif', 'back', 'Barbell / EZ-Bar', '8-12 reps', '', '3 sets'),
+(6, 'Chest Pres', 'chest1.gif', 'chest2.gif', 'chest', 'Barbell / EZ-Bar and Bench', '6-10 reps', '', '3 sets'),
+(7, 'Lying Chest Overhead Extension', 'chest3.gif', 'chest4.gif', 'chest', 'Barbell / EZ-Bar and Bench', '10-12 reps', '', '3 sets'),
 (8, 'Incline Dumbbell Bench Chest Press', 'chest5.gif', 'chest6.gif', 'chest', 'Dumbbells and Bench', '8-12 reps', '', '3 sets'),
-(9, 'Push Ups', 'chest7.gif', 'chest8.gif', 'chest', 'No equipment needed', '6-12 reps', '', '3 sets'),
+(9, 'Push Up', 'chest7.gif', 'chest8.gif', 'chest', 'No equipment needed', '6-12 reps', '', '3 sets'),
 (10, 'Standing Cable Chest Press', 'chest9.gif', 'chest10.gif', 'chest', 'Cable Station', '8-12 reps', '', '3 sets'),
-(11, 'Sit Ups', 'core1.gif', 'core2.gif', 'core', 'No equipment needed', '10-15 reps', '', '3 sets'),
-(12, 'Weighted Russian Twists', 'core3.gif', 'core4.gif', 'core', 'Dumbbells', '8-12 reps', '', '3 sets'),
-(13, 'Lying Leg Raises', 'core5.gif', 'core6.gif', 'core', 'No equipment needed', '8-12 reps', '', '3 sets'),
+(11, 'Sit Up', 'core1.gif', 'core2.gif', 'core', 'No equipment needed', '10-15 reps', '', '3 sets'),
+(12, 'Weighted Russian Twist', 'core3.gif', 'core4.gif', 'core', 'Dumbbells', '8-12 reps', '', '3 sets'),
+(13, 'Lying Leg Raise', 'core5.gif', 'core6.gif', 'core', 'No equipment needed', '8-12 reps', '', '3 sets'),
 (14, 'Plank', 'core7.gif', 'core8.gif', 'core', 'No equipment needed', '', '20-60 sec', '3 sets'),
-(15, 'Crunches', 'core9.gif', 'core10.gif', 'core', 'No equipment needed', '10-15 reps', '', '3 sets'),
-(16, 'Bent Over Double Arm Tricep Kickbacks', 'arms1.gif', 'arms2.gif', 'arms', 'Dumbbells', '10-15 reps', '', '3 sets'),
-(17, 'Standing Bicep Cable Curls', 'arms3.gif', 'arms4.gif', 'arms', 'Cable Station', '8-12 reps', '', '3 sets'),
-(18, 'Tricep Cable Rope Pull Downs', 'arms5.gif', 'arms6.gif', 'arms', 'Cable Station', '8-12 reps', '', '3 sets'),
-(19, 'Seated Dumbbell Bicep Curls', 'arms7.gif', 'arms8.gif', 'arms', 'Dumbbells', '8-12 reps', '', '3 sets'),
-(20, 'Bench Tricep Dips', 'arms9.gif', 'arms10.gif', 'arms', 'Bench', '8-12 reps', '', '3 sets'),
-(21, 'Barbell Overhead Squats', 'legs1.gif', 'legs2.gif', 'legs', 'Barbell', '2-5 reps', '', '3 sets'),
-(22, 'Leg Press Machine Calf Raises', 'legs3.gif', 'legs4.gif', 'legs', 'Leg Press Machine Calf Raises', '12-15 reps', '', '3 sets'),
-(23, 'Lying Leg Curls', 'legs5.gif', 'legs6.gif', 'legs', 'Leg Curl Machine', '10-12 reps', '', '3 sets'),
+(15, 'Crunch', 'core9.gif', 'core10.gif', 'core', 'No equipment needed', '10-15 reps', '', '3 sets'),
+(16, 'Bent Over Double Arm Tricep Kickback', 'arms1.gif', 'arms2.gif', 'arms', 'Dumbbells', '10-15 reps', '', '3 sets'),
+(17, 'Standing Bicep Cable Curl', 'arms3.gif', 'arms4.gif', 'arms', 'Cable Station', '8-12 reps', '', '3 sets'),
+(18, 'Tricep Cable Rope Pull Down', 'arms5.gif', 'arms6.gif', 'arms', 'Cable Station', '8-12 reps', '', '3 sets'),
+(19, 'Seated Dumbbell Bicep Curl', 'arms7.gif', 'arms8.gif', 'arms', 'Dumbbells', '8-12 reps', '', '3 sets'),
+(20, 'Bench Tricep Dip', 'arms9.gif', 'arms10.gif', 'arms', 'Bench', '8-12 reps', '', '3 sets'),
+(21, 'Barbell Overhead Squat', 'legs1.gif', 'legs2.gif', 'legs', 'Barbell', '2-5 reps', '', '3 sets'),
+(22, 'Leg Press Machine Calf Raise', 'legs3.gif', 'legs4.gif', 'legs', 'Leg Press Machine Calf Raises', '12-15 reps', '', '3 sets'),
+(23, 'Lying Leg Curl', 'legs5.gif', 'legs6.gif', 'legs', 'Leg Curl Machine', '10-12 reps', '', '3 sets'),
 (24, 'Jump Rope', 'legs7.gif', 'legs8.gif', 'legs', 'Rope', '', '30-60 sec', '3 sets'),
-(25, 'Agility Ladder Drills', 'legs9.gif', 'legs10.gif', 'legs', 'Ladder', '3-5 reps', '', '3 sets'),
-(26, 'Barbell Kneeling Squats', 'glutes1.gif', 'glutes2.gif', 'glutes', 'Barbell', '8-10 reps', '', '2 sets'),
-(27, 'Glute Bridges', 'glutes3.gif', 'glutes4.gif', 'glutes', 'Yoga Mat', '10-15 reps', '', '3 sets'),
-(28, 'Dumbbell Lunges', 'glutes5.gif', 'glutes6.gif', 'glutes', 'Dumbbells', '10-15 reps', '', '3 sets'),
-(29, 'Jump Squats', 'glutes7.gif', 'glutes8.gif', 'glutes', 'No equipment needed', '8-12 reps', '', '3 sets'),
-(30, 'Resistance Band Glute Kickbacks', 'glutes9.gif', 'glutes10.gif', 'glutes', 'Resistance Band', '10-15 reps', '', '3 sets');
+(25, 'Agility Ladder Drill', 'legs9.gif', 'legs10.gif', 'legs', 'Ladder', '3-5 reps', '', '3 sets'),
+(26, 'Barbell Kneeling Squat', 'glutes1.gif', 'glutes2.gif', 'glutes', 'Barbell', '8-10 reps', '', '2 sets'),
+(27, 'Glute Bridge', 'glutes3.gif', 'glutes4.gif', 'glutes', 'Yoga Mat', '10-15 reps', '', '3 sets'),
+(28, 'Dumbbell Lunge', 'glutes5.gif', 'glutes6.gif', 'glutes', 'Dumbbells', '10-15 reps', '', '3 sets'),
+(29, 'Jump Squat', 'glutes7.gif', 'glutes8.gif', 'glutes', 'No equipment needed', '8-12 reps', '', '3 sets'),
+(30, 'Resistance Band Glute Kickback', 'glutes9.gif', 'glutes10.gif', 'glutes', 'Resistance Band', '10-15 reps', '', '3 sets');
 
 -- --------------------------------------------------------
 
@@ -133,30 +204,40 @@ INSERT INTO `workouts` (`id`, `name`, `image_url`, `image_url2`, `focus`, `equip
 
 CREATE TABLE `workout_plan` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `plan_id` int(11) NOT NULL,
   `workout_day` varchar(20) NOT NULL,
   `exercise_name` varchar(100) NOT NULL,
   `sets` int(11) NOT NULL,
-  `reps` int(11) NOT NULL,
-  `duration` int(11) NOT NULL
+  `reps` int(11) NOT NULL DEFAULT 0,
+  `duration` int(11) NOT NULL DEFAULT 0,
+  `completed` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `workout_plan`
 --
 
-INSERT INTO `workout_plan` (`id`, `user_id`, `workout_day`, `exercise_name`, `sets`, `reps`, `duration`) VALUES
-(1, 0, 'Tue', 'push-ups', 1, 1, 0),
-(5, 0, 'Fri', 'Lat Pulldowns', 3, 12, 0),
-(6, 0, 'Fri', 'Lat Pulldowns', 3, 12, 0),
-(7, 0, 'Fri', 'Back Extensions', 3, 8, 0),
-(8, 0, 'Sun', 'Lat Pulldowns', 3, 12, 0),
-(9, 0, 'Sun', 'Back Extensions', 3, 8, 0),
-(10, 0, 'Mon', 'Barbell Overhead Squats', 3, 2, 0);
+INSERT INTO `workout_plan` (`id`, `plan_id`, `workout_day`, `exercise_name`, `sets`, `reps`, `duration`, `completed`) VALUES
+(5, 1, 'Fri', 'Lat Pulldowns', 3, 12, 0, 0),
+(6, 1, 'Fri', 'Lat Pulldowns', 3, 12, 0, 0),
+(10, 0, 'Mon', 'Barbell Overhead Squats', 3, 2, 0, 0),
+(12, 0, '', 'T-Bar Rows', 3, 8, 0, 0),
+(15, 0, 'Sun', 'Sit Ups', 3, 10, 0, 1),
+(16, 0, 'Sun', 'Sit Ups', 3, 10, 0, 1),
+(17, 0, 'Tue', 'Back Extensions', 3, 8, 0, 0),
+(18, 0, 'Mon', 'Standing Cable Chest Press', 3, 8, 0, 0),
+(19, 1, 'Mon', 'Lat Pulldowns', 3, 12, 0, 0),
+(20, 1, 'Mon', 'T-Bar Rows', 3, 8, 0, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `measurements`
+--
+ALTER TABLE `measurements`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -172,6 +253,12 @@ ALTER TABLE `users`
 ALTER TABLE `user_history`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `weight`
+--
+ALTER TABLE `weight`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `workouts`
@@ -198,6 +285,12 @@ ALTER TABLE `workout_plan`
 --
 
 --
+-- AUTO_INCREMENT for table `measurements`
+--
+ALTER TABLE `measurements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -208,6 +301,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `weight`
+--
+ALTER TABLE `weight`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `workouts`
