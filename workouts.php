@@ -1,72 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/workouts-styles.css">
-    <title>Workouts</title>
-</head>
-<body>
-    <div class="nav">
-        <ul>
-            <li>
-                <a href="">
-                    <div>
-                        <img src="" alt="">
-                        <p></p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="home.html">
-                    <div>
-                        <img src="assets/images/home-icon.webp" alt="">
-                        <p>Home</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="workouts.html">
-                    <div>
-                        <img src="assets/images/workouts-icon.webp" alt="">
-                        <p>Workouts</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="plans.html">
-                    <div>
-                        <img src="assets/images/plans-icon.webp" alt="">
-                        <p>Plans</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="history.html">
-                    <div>
-                        <img src="assets/images/history-icon.webp" alt="">
-                        <p>History</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="progress.html">
-                    <div>
-                        <img src="assets/images/progress-icon.webp" alt="">
-                        <p>Progress</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <div>
-                        <img src="assets/images/profile-icon.svg" alt="">
-                        <p>Profile</p>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
+<?php
+include 'includes/header.php';
+?>
     <div class="content">
         <div class="workout-main">
             <h2 class="section-title">TARGET BODY PART</h2>
@@ -123,7 +57,7 @@
                     </div>
                 </div>
                 <div class="exercise-modal-actions">
-                    <button id="addWorkoutBtn" >add workout</button>
+                    <button id="addWorkoutBtn" data-exercise="<?= $workout['name'] ?>">add workout</button>
                     <button id="closeModalBtn" class="return-btn">return</button>
                 </div>
             </div>
@@ -664,5 +598,5 @@
     };
 
 </script>
-</body>
-</html>
+
+<?php include 'includes/footer.php'; ?>

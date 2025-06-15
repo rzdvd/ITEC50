@@ -6,6 +6,17 @@ function changeDay(day) {
     window.location.href = 'plans.php?day=' + day;
 }
 
+document.querySelector(".add").addEventListener("click", function() {
+    document.getElementById("workoutModal").style.display = "flex";
+});
+
+document.querySelector(".close").addEventListener("click", function() {
+    document.getElementById("workoutModal").style.display = "none";
+});
+
+window.addEventListener("click", function(e) {
+    const modal = document.getElementById("workoutModal");
+    if (e.target === modal) {
 const modal = document.getElementById("workoutModal");
 const addWorkoutButton = document.querySelector(".add");
 const closeButton = document.querySelector(".close");
@@ -22,7 +33,7 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const workoutSelect = document.getElementById('workoutSelect');
@@ -44,6 +55,36 @@ document.addEventListener('DOMContentLoaded', () => {
             durationInput.value = '';
         }
     });
+});
+
+document.querySelectorAll('.edit-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const id = this.dataset.id;
+        const sets = this.dataset.sets;
+        const reps = this.dataset.reps;
+        const duration = this.dataset.duration;
+
+        // Populate form fields
+        document.getElementById('edit-id').value = id;
+        document.getElementById('edit-sets').value = sets;
+        document.getElementById('edit-reps').value = reps;
+        document.getElementById('edit-duration').value = duration;
+
+        // Show modal
+        document.getElementById('editWorkoutModal').style.display = 'flex';
+    });
+});
+
+// Close modal logic (optional: make sure you also add close button logic)
+document.querySelector('.close-edit').addEventListener('click', function() {
+    document.getElementById('editWorkoutModal').style.display = 'none';
+});
+
+window.addEventListener("click", function(e) {
+  const modal = document.getElementById("editWorkoutModal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
 });
 
 
@@ -155,6 +196,7 @@ nextBtn.addEventListener('click', () => {
 updateCalendar();
 
 /* PROGRESS */
+
 document.addEventListener('DOMContentLoaded', function () {
     fetch('progress_data.php')
         .then(response => response.json())

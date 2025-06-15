@@ -3,10 +3,9 @@
     $db_user = "root";
     $db_pass = "";
     $db_name = "fitna";
-    $conn = "";
 
     try{
-        $conn = mysqli_connect($db_server, 
+        $conn = new mysqli($db_server, 
                                 $db_user, 
                                 $db_pass, 
                                 $db_name);

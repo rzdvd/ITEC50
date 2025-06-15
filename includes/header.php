@@ -12,14 +12,6 @@
 <div class="nav">
     <ul>
         <li>
-            <a href="">
-                <div>
-                    <img src="" alt="">
-                    <p></p>
-                </div>
-            </a>
-        </li>
-        <li>
             <a href="home.html">
                 <div>
                     <img src="assets/images/home-icon.webp" alt="">
