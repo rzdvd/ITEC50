@@ -58,85 +58,78 @@ button:hover {
   opacity: 0.9;
 }
 
+/* Common modal wrapper */
 .modal {
+  display: none; /* Hidden by default */
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: none;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* dark overlay */
   justify-content: center;
   align-items: center;
-  z-index: 999;
-  backdrop-filter: blur(3px);
 }
 
+/* Common modal content */
 .modal-content {
-  background-color: #843D49;
-  padding: 2rem 2.5rem;
-  border-radius: 20px;
+  background-color: #843d49;
+  padding: 30px;
+  border-radius: 10px;
   width: 400px;
   max-width: 90%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  color: #ffe194;
   position: relative;
-  color: white;
-  font-family: "Poppins", sans-serif;
-  text-align: center;
 }
 
-.modal-content h2 {
-  margin-bottom: 1.5rem;
-  font-size: 24px;
-}
-
-.modal-content form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.modal-content input, 
-.modal-content select {
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
-  width: 100%;
-}
-
-.modal-content label {
-  text-align: left;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-.modal-content button[type="submit"] {
-  padding: 12px;
-  background-color: #FCD581;
-  color: #650d1b;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.modal-content button[type="submit"]:hover {
-  background-color: #ffe194;
-}
-
-.close {
+/* Close button (shared across modals) */
+.close, .close-edit {
   position: absolute;
   top: 15px;
   right: 20px;
+  color: #ffe194;
   font-size: 28px;
-  color: #fff;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.close:hover {
-  color: #FCD581;
+.close:hover,
+.close-edit:hover {
+  color: #fff;
+}
+
+/* Inputs and button styling */
+.modal-content input[type="number"],
+.modal-content input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffe194;
+  color: #843d49;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #ffd35f;
+}
+
+#logWeightModal form {
+  display: flex;
+  flex-direction: column;
 }
 
 /* END OF GLOBAL STYLES */
@@ -304,6 +297,12 @@ button:hover {
   padding: 15px 20px;
   transition: background 0.2s, color 0.2s;
   gap: 30px;
+}
+
+.add:hover {
+  cursor: pointer;
+  background-color: #ffd35f;
+  color: #510c17;
 }
 
 #addWorkoutForm {
@@ -560,6 +559,7 @@ button:hover {
   flex-direction: column;
   align-items: center;
   padding-left: 2%;
+  margin-bottom: 2rem;
 }
 
 
@@ -587,8 +587,8 @@ button:hover {
 }
 
 .chart-header button {
-    background-color: #FCD581;
-    color: #650d1b;
+    background-color: #650d1b;
+    color: white;
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
@@ -608,7 +608,7 @@ canvas {
   max-height: 100%;
 }
 
-form {
+#measurements-form {
   display: flex;
   justify-content: space-between;
   width: 95%;
@@ -620,20 +620,42 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 60%;
-  height: 40vh;
+  width: 58%;
+  height: 50vh;
   background-color: #843D49;
   color: #fff;
   border-radius: 10px;
   padding: 2rem;
   overflow: auto;
   padding-right: 15px;
+ 
 
 }
 
-.measurements::-webkit-scrollbar {
+.measurements-data {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #843D49;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 2rem;
+  overflow: auto;
+  font-size: larger;
+}
+
+.measurements-data::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
+}
+
+.measurements-data::-webkit-scrollbar-thumb {
+  background-color: #650d1c87;
+  border-radius: 15px;
+}
+
+.measurements-data::-webkit-scrollbar-track {
+  color: #FCD581;
 }
 
 .measurements .head {
@@ -642,10 +664,25 @@ form {
   padding: 1rem;
 }
 
-.log {
-  background-color: #650d1b;
+.measurements input {
+  padding: 6px;
   border-radius: 10px;
-  padding: 1rem;
+  border: none;
+}
+
+.log {
+  display: flex;
+  align-items: center;
+}
+
+.log button {
+  background-color: #650d1b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 20px 20px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 hr {
@@ -658,5 +695,25 @@ hr {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
+  align-items: center;
+}
+
+.streak {
+  width: 38%;
+  height: 50vh;
+  background-color: #843d49;
+  border-radius: 10px;
+  background-image: url(images/streak.webp);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xxx-large;
+  font-weight: bolder;
+  color: #ffe194;
 }
 

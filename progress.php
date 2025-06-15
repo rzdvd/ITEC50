@@ -76,7 +76,7 @@ include 'includes/header.php';
         </div>
     </div>
     
-    <form method ="POST">
+    <form id="measurements-form" method ="POST">
         <div class="measurements">
             <div class="head">
                 <h2>MEASUREMENTS</h2>
@@ -85,18 +85,24 @@ include 'includes/header.php';
                 </div>
             </div>
 
-            <?php 
-                $exclude = ['id', 'user_id', 'log_date']; 
-                foreach ($measurements as $part => $value): 
-                if (in_array($part, $exclude)) continue; 
-            ?>
-                <div class="body-part">
-                    <h4><?= ucfirst($part) ?></h4>
-                    <input type="number" value="<?= $measurements[$part] ?>" step="0.01" name="<?= $part ?>" value="<?= $value ?>">
-                </div>
-                <hr>
-            <?php endforeach; ?>
+            <div class="measurements-data">
+                <?php 
+                    $exclude = ['id', 'user_id', 'log_date']; 
+                    foreach ($measurements as $part => $value): 
+                    if (in_array($part, $exclude)) continue; 
+                ?>
+                    <div class="body-part">
+                        <h4><?= ucfirst($part) ?></h4>
+                        <input type="number" value="<?= $measurements[$part] ?>" step="0.01" name="<?= $part ?>" value="<?= $value ?>">
+                    </div>
+                    <hr>
+                <?php endforeach; ?>
+            </div>
+            
            
+        </div>
+        <div class="streak">
+           <p><span id="streakCount">0</span> Streak Days</p>
         </div>
     </section>
     
@@ -181,5 +187,14 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.style.display = "none";
         }
     }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('streak.php')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("streakCount").innerText = data.streak;
+    })
+    .catch(error => console.error('Error fetching streak:', error));
 });
 </script>
