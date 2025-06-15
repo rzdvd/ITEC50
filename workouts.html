@@ -479,6 +479,21 @@
 
         let currentFocus = 0;
 
+        const bodypartMap = {
+            back: 0,
+            chest: 1,
+            core: 2,
+            arms: 3,
+            legs: 4,
+            glutes: 5
+        };
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const bodypart = urlParams.get('bodypart');
+        if (bodypart && bodypartMap.hasOwnProperty(bodypart.toLowerCase())) {
+            currentFocus = bodypartMap[bodypart.toLowerCase()];
+        }
+
         function updateFocus() {
             const focus = focuses[currentFocus];
             document.getElementById('focusImage').src = focus.img;
