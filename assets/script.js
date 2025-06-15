@@ -6,23 +6,20 @@ function changeDay(day) {
     window.location.href = 'plans.php?day=' + day;
 }
 
-const modal = document.getElementById("workoutModal");
-const addWorkoutButton = document.querySelector(".add");
-const closeButton = document.querySelector(".close");
+document.querySelector(".add").addEventListener("click", function() {
+    document.getElementById("workoutModal").style.display = "flex";
+});
 
-addWorkoutButton.onclick = function() {
-    modal.style.display = "block";
-}
+document.querySelector(".close").addEventListener("click", function() {
+    document.getElementById("workoutModal").style.display = "none";
+});
 
-closeButton.onclick = function() {
-    modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == modal) {
+window.addEventListener("click", function(e) {
+    const modal = document.getElementById("workoutModal");
+    if (e.target === modal) {
         modal.style.display = "none";
     }
-}
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const workoutSelect = document.getElementById('workoutSelect');
@@ -44,6 +41,36 @@ document.addEventListener('DOMContentLoaded', () => {
             durationInput.value = '';
         }
     });
+});
+
+document.querySelectorAll('.edit-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const id = this.dataset.id;
+        const sets = this.dataset.sets;
+        const reps = this.dataset.reps;
+        const duration = this.dataset.duration;
+
+        // Populate form fields
+        document.getElementById('edit-id').value = id;
+        document.getElementById('edit-sets').value = sets;
+        document.getElementById('edit-reps').value = reps;
+        document.getElementById('edit-duration').value = duration;
+
+        // Show modal
+        document.getElementById('editWorkoutModal').style.display = 'flex';
+    });
+});
+
+// Close modal logic (optional: make sure you also add close button logic)
+document.querySelector('.close-edit').addEventListener('click', function() {
+    document.getElementById('editWorkoutModal').style.display = 'none';
+});
+
+window.addEventListener("click", function(e) {
+  const modal = document.getElementById("editWorkoutModal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
 });
 
 
@@ -104,88 +131,6 @@ nextBtn.addEventListener('click', () => {
 updateCalendar();
 
 /* PROGRESS */
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('progress_data.php')
-    .then(response => response.json())
-    .then(data => {
-        const ctx = document.getElementById('progress-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: data.labels,
-                datasets: [{
-                    label: 'Weight',
-                    data: data.weights,
-                    borderColor: '#fff',
-                    backgroundColor: '#843d49',
-                    fill: false,
-                    pointRadius: 5,
-                    tension: 0.3
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'My Weight',
-                        color: '#fff',
-                        font: {
-                            size: 24
-                        },
-                        align: 'start',
-                        padding: {
-                            bottom: 30
-                        }
-                    },
-                    legend: {
-                        display: false
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        ticks: {
-                            color: '#fff',
-                            font: {
-                                size: 14
-                            }
-                        },
-                        grid: {
-                            color: '#f8f8f8'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Date',
-                            color:'#fff'
-                        },
-                    },
-                    y: {
-                        min: 49.4,
-                        max: 50.4,
-                        ticks: {
-                            stepSize: 0.1,
-                            color: '#fff',
-                            font: {
-                                size: 14
-                            }
-                        },
-                        grid: {
-                            color: '#f8f8f8'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Weight (kg)',
-                            color: '#fff'
-                        }
-                    }
-                }
-            }
-        });
-    })
-    .catch(error => {
-        console.error('Error fetching progress data:', error);
-    });
-});
+
 
 

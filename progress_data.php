@@ -1,10 +1,53 @@
 <?php
+include 'database.php';
 
-$data = [
-    'labels' => ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
-    'weights' => [50.0, 50.0, 50.0 ]
-];
+// Prepare 7-day window (today - 3 days, today + 3 days)
+$startDate = date("Y-m-d", strtotime("-3 days"));
+$endDate = date("Y-m-d", strtotime("+3 days"));
 
-header('Content-Type: application/json');
-echo json_encode($data);
+// Fetch weight data within this window
+$stmt = $conn->prepare("SELECT log_date, weight FROM weight WHERE log_date BETWEEN ? AND ?");
+$stmt->bind_param("ss", $startDate, $endDate);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$data = [];
+while ($row = $result->fetch_assoc()) {
+    $data[$row['log_date']] = (float)$row['weight'];
+}
+
+// Build full 7-day date array
+$labels = [];
+$weights = [];
+$minWeight = PHP_FLOAT_MAX;
+$maxWeight = PHP_FLOAT_MIN;
+
+for ($i = -3; $i <= 3; $i++) {
+    $date = date("Y-m-d", strtotime("$i days"));
+    $labels[] = $date;
+
+    if (isset($data[$date])) {
+        $weights[] = $data[$date];
+        if ($data[$date] < $minWeight) $minWeight = $data[$date];
+        if ($data[$date] > $maxWeight) $maxWeight = $data[$date];
+    } else {
+        $weights[] = null;  // blank spot
+    }
+}
+
+// Prevent chart crash if no data
+if ($minWeight === PHP_FLOAT_MAX) {
+    $minWeight = 0;
+    $maxWeight = 10;
+} else {
+    $minWeight -= 1;
+    $maxWeight += 1;
+}
+
+echo json_encode([
+    'labels' => $labels,
+    'weights' => $weights,
+    'minWeight' => $minWeight,
+    'maxWeight' => $maxWeight
+]);
 ?>
