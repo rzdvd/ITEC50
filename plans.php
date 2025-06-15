@@ -192,7 +192,7 @@ include 'includes/header.php';
             <span class="close">&times;</span>
             <h2>Add Workout</h2>
             <form id="addWorkoutForm" method="POST" action="plans.php?day=<?= $currentDay ?>">
-                <input type="hidden" name="plan_id" value="<?= $plan_id ?>">
+                <input type="hidden" name="plan_id" value="1">
                 <input type="hidden" name="workout_day" value="<?= $currentDay ?>">
                 <select name="workout" id="workoutSelect" required>
                     <option value="">Select a workout</option>
@@ -247,6 +247,24 @@ include 'includes/header.php';
 
 <script>
     const workoutsData = <?php echo json_encode($workouts_add); ?>;
+
+    window.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const workoutFromParam = urlParams.get('workout');
+
+    if (workoutFromParam) {
+        const dropdown = document.getElementById('workoutSelect');
+        
+        for (let option of dropdown.options) {
+            if (option.value.toLowerCase() === workoutFromParam.toLowerCase()) {
+                option.selected = true;
+                break;
+            }
+        }
+
+        document.getElementById('workoutModal').style.display = 'flex';
+    }
+});
 </script>
 
 <?php include 'includes/footer.php'; ?>

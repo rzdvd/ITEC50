@@ -593,9 +593,19 @@ include 'includes/header.php';
         const workoutName = this.dataset.exercise;
         const confirmAdd = confirm("Do you want to add this workout to your plan?");
         if (confirmAdd) {
-            window.location.href = "plans.html?workout=" + encodeURIComponent(workoutName);
+            window.location.href = "plans.php?workout=" + encodeURIComponent(workoutName);
         }
     };
+
+    document.querySelectorAll('.add-workout-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const workoutName = this.dataset.exercise;
+        const confirmAdd = confirm("Do you want to add this workout to your plan?");
+        if (confirmAdd) {
+            window.location.href = "plans.php?workout=" + encodeURIComponent(workoutName);
+        }
+    });
+});
 
 </script>
 

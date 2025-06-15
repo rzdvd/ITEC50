@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/workouts-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Fitness Website</title>
 </head>
@@ -12,7 +13,7 @@
 <div class="nav">
     <ul>
         <li>
-            <a href="home.html">
+            <a href="home.php">
                 <div>
                     <img src="assets/images/home-icon.webp" alt="">
                     <p>Home</p>
@@ -20,7 +21,7 @@
             </a>
         </li>
         <li>
-            <a href="workouts.html">
+            <a href="workouts.php">
                 <div>
                     <img src="assets/images/workouts-icon.webp" alt="">
                     <p>Workouts</p>
@@ -36,7 +37,7 @@
             </a>
         </li>
         <li>
-            <a href="history.html">
+            <a href="history.php">
                 <div>
                     <img src="assets/images/history-icon.webp" alt="">
                     <p>History</p>
