@@ -156,6 +156,12 @@ body {
   color: #fff;
 }
 
+.date.selected {
+  background-color: #FCD581 !important;
+  color: white !important;
+  border-radius: 50%;
+}
+
 .verticalLine {
   width: 1px;
   height: 92%;

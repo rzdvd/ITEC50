@@ -1,3 +1,14 @@
+<?php
+session_start();
+include("database.php");
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="home.html">
+                <a href="home.php">
                     <div>
                         <img src="assets/images/home-icon.webp" alt="">
                         <p>Home</p>
@@ -45,7 +56,7 @@
                 </a>
             </li>
             <li>
-                <a href="history.html">
+                <a href="history.php">
                     <div>
                         <img src="assets/images/history-icon.webp" alt="">
                         <p>History</p>
@@ -158,3 +169,7 @@
 </body>
 
 </html>
+
+<?php
+mysqli_close($conn);
+?>
