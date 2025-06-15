@@ -5,6 +5,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+.content {
+    margin-left: 5%;
+}
+
 body {
   min-height: 100vh;
   width: 100vw;
@@ -192,6 +196,7 @@ body {
   margin-top: 25px;
   margin-bottom: 50px;
   color: #fff;
+  align-items: flex-start;
 }
 
 .scrollableMenu h2 {
@@ -204,17 +209,20 @@ body {
 }
 
 .bodyPartImages {
-  height: inherit;
-  width: 100%;
+  height: 400px;
+  min-height: 400x;
+  max-height: 400px;
+  width: 110%;
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden; 
   white-space: nowrap;
   gap: 20px;
+  padding: 20px;
 }
 
 .bodyPartImage {
   height: 100%;
-  flex-shrink: 0;
   width: 225px;
   border-radius: 20px;
   display: flex;
@@ -223,10 +231,34 @@ body {
   padding: 15px;
   font-size: 20px;
   font-weight: 600;
+  /* background-size: cover !important; 
+  background-position: center !important;
+  background-repeat: no-repeat !important; */
+  box-sizing: border-box;
 }
 
 .bodyPartImages::-webkit-scrollbar {
   visibility: hidden;
+}
+
+.bodyPartLink {
+  display: block;
+  height: 100%;
+  width: 225px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bodyPartLink .bodyPartImage {
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.bodyPartLink:hover .bodyPartImage,
+.bodyPartImage:hover {
+  cursor: pointer;
+  box-shadow: 0 0 20px 5px #ff2e4d, 0 0 40px 10px #ff2e4d66;
+  transform: scale(1.03);
+  z-index: 2;
 }
 
 #redirectBtn {
@@ -241,46 +273,53 @@ body {
   font-size: 20px;
   color: #fff;
   margin-bottom: 7px;
+  pointer-events: none;
 }
 
 #bpi1 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/arms.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/back.jpg);
   background-repeat: no-repeat, no-repeat;
-  background-size: cover, 100% 100%;
-  background-position: left;
+  background-size: cover, cover;
+  background-position: center, center;
 }
 
 #bpi2 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/glutes.jpg);
+  background: linear-gradient(#000000, #ffffff00), url(../images/chest.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
-  background-position: bottom, left;
+  background-size: cover, cover;
+  background-position: 0%, 50%;
 }
 
 #bpi3 {
   background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/core.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
-  background-position: bottom, left;
+  background-size: cover, cover;
+  background-position: 50%, 45%;
 }
 
 #bpi4 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/legs.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/arms.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
-  background-position: bottom, left;
+  background-size: cover, cover;
+  background-position: 60%, 60%;
 }
 
 #bpi5 {
-  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/back.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/legs.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
-  background-position: bottom, left;
+  background-size: cover, cover;
+  background-position: bottom center, bottom center;
 }
 
 #bpi6 {
-  background: linear-gradient(#000000, #ffffff00), url(../images/chest.jpg);
+  background: linear-gradient(#ffffff00, rgb(0, 0, 0)), url(../images/glutes.jpg);
   background-repeat: no-repeat, no-repeat;
-    background-size: cover, 100% 100%;
-  background-position: bottom, left;
+  background-size: cover, cover;
+  background-position: 60%, 60%;
 }
+
+
+
+
+
+
