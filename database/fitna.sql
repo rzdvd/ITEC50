@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 02:11 PM
+-- Generation Time: Jun 16, 2025 at 02:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -228,7 +228,7 @@ INSERT INTO `workouts` (`id`, `name`, `image_url`, `image_url2`, `focus`, `equip
 
 CREATE TABLE `workout_plan` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `workout_day` varchar(20) NOT NULL,
   `exercise_name` varchar(100) NOT NULL,
   `sets` int(11) NOT NULL,
@@ -238,27 +238,6 @@ CREATE TABLE `workout_plan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `workout_plan`
---
-
-INSERT INTO `workout_plan` (`id`, `user_id`, `workout_day`, `exercise_name`, `sets`, `reps`, `duration`, `completed`) VALUES
-(5, 1, 'Fri', 'Lat Pulldowns', 3, 12, 0, 0),
-(6, 1, 'Fri', 'Lat Pulldowns', 3, 12, 0, 0),
-(10, 0, 'Mon', 'Barbell Overhead Squats', 3, 2, 0, 0),
-(12, 0, '', 'T-Bar Rows', 3, 8, 0, 0),
-(15, 0, 'Sun', 'Sit Ups', 3, 10, 0, 1),
-(16, 0, 'Sun', 'Sit Ups', 3, 10, 0, 1),
-(17, 0, 'Tue', 'Back Extensions', 3, 8, 0, 0),
-(18, 0, 'Mon', 'Standing Cable Chest Press', 3, 8, 0, 1),
-(19, 1, 'Mon', 'Lat Pulldowns', 3, 12, 0, 0),
-(20, 1, 'Mon', 'T-Bar Rows', 3, 8, 0, 0),
-(22, 1, 'Sun', 'Back Extension', 1, 12, 0, 1),
-(23, 1, 'Sun', 'Weighted Russian Twist', 3, 8, 0, 0),
-(24, 1, 'Mon', 'Lying Leg Raise', 3, 8, 0, 1),
-(25, 1, 'Mon', 'Push Up', 3, 6, 0, 0),
-(26, 1, 'Mon', 'Pull Up', 3, 5, 0, 0);
-
---
 -- Indexes for dumped tables
 --
 
@@ -266,7 +245,8 @@ INSERT INTO `workout_plan` (`id`, `user_id`, `workout_day`, `exercise_name`, `se
 -- Indexes for table `measurements`
 --
 ALTER TABLE `measurements`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_meauserments_user` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -287,13 +267,15 @@ ALTER TABLE `user_history`
 -- Indexes for table `user_info`
 --
 ALTER TABLE `user_info`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_info_user` (`user_id`);
 
 --
 -- Indexes for table `weight`
 --
 ALTER TABLE `weight`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_weight_user` (`user_id`);
 
 --
 -- Indexes for table `workouts`
@@ -313,7 +295,8 @@ ALTER TABLE `workouts`
 -- Indexes for table `workout_plan`
 --
 ALTER TABLE `workout_plan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_workout_plan_user` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -366,10 +349,34 @@ ALTER TABLE `workout_plan`
 --
 
 --
+-- Constraints for table `measurements`
+--
+ALTER TABLE `measurements`
+  ADD CONSTRAINT `fk_meauserments_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `user_history`
 --
 ALTER TABLE `user_history`
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_info`
+--
+ALTER TABLE `user_info`
+  ADD CONSTRAINT `fk_user_info_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `weight`
+--
+ALTER TABLE `weight`
+  ADD CONSTRAINT `fk_weight_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `workout_plan`
+--
+ALTER TABLE `workout_plan`
+  ADD CONSTRAINT `fk_workout_plan_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
