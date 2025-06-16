@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     function loadWorkoutStats() {
-        fetch('assets/js/get-stats.php')
+        fetch('get-stats.php')
             .then(res => res.json())
             .then(data => {
                 if (data.error) {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 dateDiv.classList.add('selected');
 
                 // Load history
-                fetch(`assets/js/get-history.php?date=${selectedDate}`)
+                fetch(`get-history.php?date=${selectedDate}`)
                     .then(res => res.json())
                     .then(data => displayHistory(data))
                     .catch(err => console.error('Failed to load history:', err));

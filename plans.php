@@ -7,6 +7,8 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+// DELETE workout
+$user_id = $_SESSION['user_id'];
 $currentDay = $_GET['day'] ?? date('D');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
@@ -14,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     $deleteId = intval($_POST['delete_id']);
 
     $stmt = $conn->prepare("DELETE FROM workout_plan WHERE id = ?");
-    $stmt->bind_param("i", $deleteId);
+    $stmt->bind_param("ii", $deleteId, $user_id);
     $stmt->execute();
     $stmt->close();
 
@@ -22,24 +24,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     exit();
 }
 
+// INSERT workout
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['workout'])) {
-    $plan_id = $_POST['plan_id'] ?? 1; // Default to plan_id 1 if not set
-    $workout_day = $_POST['workout_day'] ?? date('D'); // Default to current day if not set
+    $user_id = $_SESSION['user_id'];
+    $workout_day = $_POST['workout_day'] ?? date('D');
     $workout = $_POST['workout'];
     $sets = $_POST['sets'];
     $reps = $_POST['reps'];
     $duration = $_POST['duration'];
 
-    $stmt = $conn->prepare("INSERT INTO workout_plan (user_id, workout_day, exercise_name, sets, reps) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("issss", $plan_id, $workout_day, $workout, $sets, $reps);
+    $stmt = $conn->prepare("INSERT INTO workout_plan (user_id, workout_day, exercise_name, sets, reps, duration) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssss", $user_id, $workout_day, $workout, $sets, $reps, $duration);
     $stmt->execute();
     $stmt->close();
 
     header("Location: plans.php?day=".$workout_day);
     exit();
+
 }
 
+// TOGGLE completed status
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_completed_id'])) {
+    $currentDay = $_POST['day'] ?? $currentDay;
     $id = intval($_POST['toggle_completed_id']);
     $currentStatus = intval($_POST['current_completed_status']);
     $newStatus = $currentStatus ? 0 : 1;
@@ -53,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_completed_id']
     exit();
 }
 
+// Load workouts for dropdown
 $sql = "SELECT id, name, focus, sets, reps FROM workouts";
 $result = $conn->query($sql);
 $workouts_add = [];
@@ -62,13 +69,14 @@ if ($result->num_rows > 0) {
     }
 }
 
+// Load workouts for this user and day
 $stmt = $conn->prepare("
     SELECT wp.*, w.focus 
     FROM workout_plan wp 
     JOIN workouts w ON wp.exercise_name = w.name 
-    WHERE wp.workout_day = ?
+    WHERE wp.user_id = ? AND wp.workout_day = ?
 ");
-$stmt->bind_param("s", $currentDay);
+$stmt->bind_param("is", $user_id, $currentDay);
 $stmt->execute();
 $result = $stmt->get_result();
 $workouts = [];
@@ -76,7 +84,7 @@ while ($row = $result->fetch_assoc()) {
     $workouts[] = $row;
 }
 
-// Calculate current week number and day name
+// Date calculations
 $today = new DateTime();
 $weekNumber = $today->format('W');
 $dayName = $today->format('D');
@@ -84,11 +92,9 @@ $fullDayName = $today->format('l');
 $monthName = $today->format('F');
 $dayOfMonth = $today->format('j');
 
-// If a day is selected, use that day for display
 $validDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 if (isset($_GET['day']) && in_array($_GET['day'], $validDays)) {
     $dayName = $_GET['day'];
-    // Find the next occurrence of the selected day (including today if it matches)
     $today = new DateTime();
     if ($today->format('D') !== $dayName) {
         $today->modify('next ' . $dayName);
@@ -163,6 +169,7 @@ include 'includes/header.php';
                             <form method="POST" action="plans.php">
                                 <input type="hidden" name="toggle_completed_id" value="<?= $workout['id'] ?>">
                                 <input type="hidden" name="current_completed_status" value="<?= $workout['completed'] ?>">
+                                <input type="hidden" name="day" value="<?= $currentDay ?>">
                                 <button type="submit" class="completed-button" style="background:none; border:none;">
                                     <?php if ($workout['completed']): ?>
                                         <img src="assets/images/check-icon.svg" alt="Completed" style="height: 40px;">
@@ -195,7 +202,6 @@ include 'includes/header.php';
             <span class="close">&times;</span>
             <h2>Add Workout</h2>
             <form id="addWorkoutForm" method="POST" action="plans.php?day=<?= $currentDay ?>">
-                <input type="hidden" name="plan_id" value="1">
                 <input type="hidden" name="workout_day" value="<?= $currentDay ?>">
                 <select name="workout" id="workoutSelect" required>
                     <option value="">Select a workout</option>
@@ -268,6 +274,82 @@ include 'includes/header.php';
         document.getElementById('workoutModal').style.display = 'flex';
     }
 });
+
+
+
+/* PLANS */
+
+function changeDay(day) {
+    window.location.href = 'plans.php?day=' + day;
+}
+
+document.querySelector(".add").addEventListener("click", function() {
+    document.getElementById("workoutModal").style.display = "flex";
+});
+
+document.querySelector(".close").addEventListener("click", function() {
+    document.getElementById("workoutModal").style.display = "none";
+});
+
+window.addEventListener("click", function(e) {
+    const modal = document.getElementById("workoutModal");
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const workoutSelect = document.getElementById('workoutSelect');
+    const setsInput = document.getElementById('sets');
+    const repsInput = document.getElementById('reps');
+    const durationInput = document.getElementById('duration');
+
+    workoutSelect.addEventListener('change', function() {
+        const selectedWorkout = this.value;
+
+        const workout = workoutsData.find(workout => workout.name === selectedWorkout);
+        if (workout) {
+            setsInput.value = workout.sets;
+            repsInput.value = workout.reps;
+            durationInput.value = workout.duration;
+        } else {
+            setsInput.value = '';
+            repsInput.value = '';
+            durationInput.value = '';
+        }
+    });
+});
+
+document.querySelectorAll('.edit-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const id = this.dataset.id;
+        const sets = this.dataset.sets;
+        const reps = this.dataset.reps;
+        const duration = this.dataset.duration;
+
+        // Populate form fields
+        document.getElementById('edit-id').value = id;
+        document.getElementById('edit-sets').value = sets;
+        document.getElementById('edit-reps').value = reps;
+        document.getElementById('edit-duration').value = duration;
+
+        // Show modal
+        document.getElementById('editWorkoutModal').style.display = 'flex';
+    });
+});
+
+// Close modal logic (optional: make sure you also add close button logic)
+document.querySelector('.close-edit').addEventListener('click', function() {
+    document.getElementById('editWorkoutModal').style.display = 'none';
+});
+
+window.addEventListener("click", function(e) {
+  const modal = document.getElementById("editWorkoutModal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
 </script>
 
 <?php include 'includes/footer.php'; ?>
