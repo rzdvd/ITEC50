@@ -14,7 +14,18 @@ $sql = $conn->prepare("SELECT * FROM workout_plan WHERE user_id = ? AND planned_
 $sql->bind_param("is", $user_id, $today);
 $sql->execute();
 $result = $sql->get_result();
-?>
+
+$quotes = [
+    "“It’s supposed to be hard. If it wasn’t hard, everyone would do it.  The hard is what makes it great.”",
+    "“You have to push past your perceived limits, push past that point you thought was as far as you can go.” ",
+    "“If you want something you’ve never had, you must be willing to do something you’ve never done.”",
+    "“Workout till you feel that pain and soreness in muscles. This one is good pain. No pain, no gain.”",
+    "“Just believe in yourself. Even if you don’t, just pretend that you do and at some point, you will.”",
+    "“I hated every minute of training, but I said, ‘Don’t quit. Suffer now and live the rest of your life as a champion.”",
+    "“Most people fail, not because of lack of desire, but, because of lack of commitment.”"
+];
+
+$randomQuote = $quotes[array_rand($quotes)];
 
 ?>
 
@@ -116,16 +127,10 @@ $result = $sql->get_result();
             </div>
         </div>
         <div class="middlePart">
-            <div class="weeksActivity">
-                <h1>This Week's Activity</h1>
-                <div class="daysActivity">
-                    <div class="dayActivity" id="inactiveDay">M</div>
-                    <div class="dayActivity" id="activeDay">T</div>
-                    <div class="dayActivity" id="activeDay">W</div>
-                    <div class="dayActivity" id="activeDay">T</div>
-                    <div class="dayActivity" id="inactiveDay">F</div>
-                    <div class="dayActivity" id="inactiveDay">S</div>
-                    <div class="dayActivity" id="inactiveDay">S</div>
+            <div class="quotes-holder">
+                <h1>Motivational Quotes:</h1>
+                <div class="quotes">
+                    <p><?php echo $randomQuote; ?></p>
                 </div>
             </div>
         </div>
