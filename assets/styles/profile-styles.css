@@ -304,6 +304,208 @@ body {
   background: #b33b50;
 }
 
+@media (max-width: 425px) {
+  body {
+    background: #650d1b;
+    min-height: 100vh;
+    padding-bottom: 80px; /* Height of nav bar */
+    overflow-x: hidden;
+  }
+
+  .nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #510c17;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+  }
 
 
-/* END OF EDIT PROFILE STYLES */
+
+  .nav ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+  }
+
+  .nav ul li {
+    margin: 0;
+  }
+
+  .nav ul li a div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav ul li a div p {
+    display: none;
+  }
+
+  .nav img {
+    height: 28px;
+    width: 28px;
+  }
+
+  .content {
+    margin: 0;
+    width: 100vw;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-header {
+    width: 95vw;
+    height: 5%;
+    margin: 0 auto 4vw auto;
+    border-radius: 18px;
+    background: #843d49;
+    overflow: visible;
+    position: relative;
+    min-height: 120px;
+    box-sizing: border-box;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+  }
+  .profile-header-bg img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    object-position: center 82%;
+    display: block;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    margin-top: -25px;
+  }
+  .profile-header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    position: relative;
+    margin-top: -20px;
+    padding: 0 16px;
+  }
+  .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 4px solid #650d1b;
+    object-fit: cover;
+    background: #fff;
+    margin-right: 12px;
+    z-index: 2;
+  }
+  .profile-header .info {
+    color: #f6a8a8;
+    margin-top: 10px !important;
+    margin-left: 0;
+    flex: 1;
+  }
+  .profile-header .info h1 {
+    font-size: 15px;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .profile-header .info p {
+    font-size: 12px;
+    margin: 0;
+    color: #dfbfbf;
+    font-weight: 400;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: 12px;
+    margin-top: 24px;
+  }
+  .buttons button {
+    background: #650d1b;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    min-width: 0;
+    min-height: 0;
+    transition: background 0.2s;
+  }
+  .buttons button:hover {
+    background: #b33b50;
+  }
+
+  .profile-content {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+    color: white;
+  }
+
+  .profile-section {
+    width: 95vw;
+    height: auto;
+    margin: 0 auto 0 auto;
+    background: #843d49;
+    border-radius: 24px;
+    padding: 24px 18px 18px 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  .profile-section img.bg-image {
+    margin-top: 40px; 
+    display: block;
+    width: 100%;
+  }
+  .profile-section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .profile-section p {
+    font-size: 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #fff2;
+    padding-bottom: 8px;
+    color: #fff;
+    font-weight: 500;
+  }
+  .profile-section p:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  .profile-section p img {
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    vertical-align: middle;
+    filter: invert(100%);
+  }
+  
+  .profile-section img {
+    filter: invert(100%);
+  }
+}
