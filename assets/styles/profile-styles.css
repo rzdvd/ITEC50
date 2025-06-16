@@ -310,7 +310,7 @@ body {
   background: #b33b50;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 600px) {
   body {
     background: #650d1b;
     min-height: 100vh;

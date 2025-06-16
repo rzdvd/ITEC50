@@ -420,7 +420,7 @@ body {
 }
 
 
-@media (max-width: 425px) {
+@media (max-width: 600px) {
   body {
     background: #650d1b;
     min-height: 100vh;
@@ -593,7 +593,6 @@ body {
   background: #222;
   display: block;
 }
-  }
   .focus-label {
     position: absolute;
     bottom: -22px;
@@ -724,3 +723,4 @@ body {
     padding: 6px 14px;
     border-radius: 8px;
   }
+}
