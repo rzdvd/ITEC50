@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -21,6 +22,7 @@ body {
     height: 100%;
     left: 0;
     padding-top: 2rem;
+    font-size: 0.9rem;
 }
 
 .nav ul {
@@ -36,6 +38,10 @@ body {
 .nav ul li a {
     text-decoration: none;
     color: #fff;
+}
+
+.nav ul li a.active p {
+  color: #ffd35f;
 }
 
 .nav ul li a div {
