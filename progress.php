@@ -94,7 +94,7 @@ include 'includes/header.php';
     <form id="measurements-form" method ="POST">
         <div class="measurements">
             <div class="head">
-                <h2>MEASUREMENTS</h2>
+                <h2 style="font-size: 1rem;">MEASUREMENTS</h2>
                 <div class="log">
                     <button type="submit" name="save_measurements">Save Measurements</button>
                 </div>
