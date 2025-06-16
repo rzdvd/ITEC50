@@ -188,7 +188,7 @@ include 'includes/header.php';
                 <h5>Sets</h5>
                 <h5>Reps</h5>
                 <h5>Duration</h5>
-                <h5>Mark as Completed</h5>
+                <h5 id="comp">Mark as Completed</h5>
             </div>
         </div>
         <div class="workouts-plan">
