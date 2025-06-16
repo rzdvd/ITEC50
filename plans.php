@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
 
     $deleteId = intval($_POST['delete_id']);
 
-    $stmt = $conn->prepare("DELETE FROM workout_plan WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM workout_plan WHERE id = ? AND user_id = ?");
     $stmt->bind_param("ii", $deleteId, $user_id);
     $stmt->execute();
     $stmt->close();
@@ -33,8 +33,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['workout'])) {
     $reps = $_POST['reps'];
     $duration = $_POST['duration'];
 
-    $stmt = $conn->prepare("INSERT INTO workout_plan (user_id, workout_day, exercise_name, sets, reps, duration) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isssss", $user_id, $workout_day, $workout, $sets, $reps, $duration);
+    // Calculate the next date for the selected workout day
+    $today = new DateTime();
+    $daysOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    $workout_day = $_POST['workout_day'] ?? date('D');
+    $planned_date = null;
+    
+    if (in_array($workout_day, $daysOfWeek)) {
+        $todayDay = $today->format('D');
+        if ($todayDay === $workout_day) {
+            $planned_date = $today->format('Y-m-d');
+        } else {
+            $today->modify('next ' . $workout_day);
+            $planned_date = $today->format('Y-m-d');
+        }
+    }
+
+    $stmt = $conn->prepare("INSERT INTO workout_plan (user_id, workout_day, exercise_name, sets, reps, duration, planned_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issssss", $user_id, $workout_day, $workout, $sets, $reps, $duration, $planned_date);
     $stmt->execute();
     $stmt->close();
 

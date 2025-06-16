@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 03:52 PM
+-- Generation Time: Jun 16, 2025 at 04:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -218,20 +218,22 @@ CREATE TABLE `workout_plan` (
   `sets` int(11) NOT NULL,
   `reps` int(11) NOT NULL DEFAULT 0,
   `duration` int(11) NOT NULL DEFAULT 0,
-  `completed` tinyint(1) NOT NULL DEFAULT 0
+  `completed` tinyint(1) NOT NULL DEFAULT 0,
+  `planned_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `workout_plan`
 --
 
-INSERT INTO `workout_plan` (`id`, `user_id`, `workout_day`, `exercise_name`, `sets`, `reps`, `duration`, `completed`) VALUES
-(28, 2, 'Sun', 'Back Extension', 3, 8, 0, 1),
-(29, 2, 'Thu', 'Lying Chest Overhead Extension', 3, 10, 0, 1),
-(30, 2, 'Mon', 'Chest Pres', 3, 6, 0, 0),
-(31, 2, 'Mon', 'Lying Leg Raise', 3, 8, 0, 1),
-(32, 2, 'Mon', 'Chest Pres', 3, 6, 0, 0),
-(33, 2, 'Mon', 'Standing Bicep Cable Curl', 3, 8, 0, 1);
+INSERT INTO `workout_plan` (`id`, `user_id`, `workout_day`, `exercise_name`, `sets`, `reps`, `duration`, `completed`, `planned_date`) VALUES
+(28, 2, 'Sun', 'Back Extension', 3, 8, 0, 1, NULL),
+(29, 2, 'Thu', 'Lying Chest Overhead Extension', 3, 10, 0, 1, NULL),
+(30, 2, 'Mon', 'Chest Pres', 3, 6, 0, 0, NULL),
+(31, 2, 'Mon', 'Lying Leg Raise', 3, 8, 0, 1, NULL),
+(32, 2, 'Mon', 'Chest Pres', 3, 6, 0, 0, NULL),
+(33, 2, 'Mon', 'Standing Bicep Cable Curl', 3, 8, 0, 1, NULL),
+(34, 2, 'Tue', 'Barbell Kneeling Squat', 2, 8, 0, 0, '2025-06-17');
 
 --
 -- Indexes for dumped tables
@@ -338,7 +340,7 @@ ALTER TABLE `workouts`
 -- AUTO_INCREMENT for table `workout_plan`
 --
 ALTER TABLE `workout_plan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Constraints for dumped tables
