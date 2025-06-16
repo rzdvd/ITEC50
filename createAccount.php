@@ -49,7 +49,7 @@ include("database.php");
             </div>
             <input type="submit" class="button" id="signupButton" value="Create Account">
         </form>
-        <p>Already have an account? <a href="index.html">Log in</a></p>
+        <p>Already have an account? <a href="index.php">Log in</a></p>
     </div>
     <img src="assets/images/Fitna.png" alt="">
     <script>
@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql->bind_param("sss", $email, $username, $hashedP);
 
     if ($sql->execute()) {
-        $_SESSION["success"] = '<div class="success-message">Account created successfully! <a href="index.html">Login here</a></div>';
+        $_SESSION["success"] = '<div class="success-message">Account created successfully! <a href="index.php">Login here</a></div>';
         header("Location: createAccount.php");
     } else {
         $_SESSION["error"] = "Something went wrong: " . $sql->error;

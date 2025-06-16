@@ -6,7 +6,7 @@
 body {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to right, #742532 60%, #ffffff00), url(assets/images/indexbg.png);
+    background: linear-gradient(to right, #742532 60%, #ffffff00), url(../images/indexbg.png);
     background-position: left, bottom right;
     background-repeat: no-repeat, no-repeat;
     background-size: 100%, 85vh;

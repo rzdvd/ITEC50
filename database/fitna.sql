@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 04:29 PM
+-- Generation Time: Jun 16, 2025 at 08:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,27 @@ CREATE TABLE `measurements` (
 --
 
 INSERT INTO `measurements` (`id`, `user_id`, `log_date`, `waist`, `hips`, `thigh`, `arm`) VALUES
-(21, 2, '2025-06-16', 65.00, NULL, NULL, NULL);
+(21, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(22, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(23, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(24, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(25, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(26, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(27, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(28, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(29, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(30, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(31, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(32, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(33, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(34, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(35, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(36, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(37, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(38, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(39, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(40, 2, '2025-06-16', 65.00, NULL, NULL, NULL),
+(41, 2, '2025-06-16', 65.00, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -54,6 +74,11 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `emailAddress` varchar(35) NOT NULL,
   `username` varchar(25) NOT NULL,
+  `full_name` varchar(100) DEFAULT NULL,
+  `gender` enum('Male','Female','Other') DEFAULT NULL,
+  `contact` varchar(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `profile_pic` varchar(100) DEFAULT NULL,
   `password` char(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -61,11 +86,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `emailAddress`, `username`, `password`) VALUES
-(2, 'gabriellim13@gmail.com', 'gabriel lim', '$2y$10$q/q3R9jzwJi8Wrxq6ic7Y.EIY1231l9mvn6gGM3j3jKGQKYkgNC6O'),
-(3, 'ruiz@gmail.com', 'ruizDavid', '$2y$10$YQyXxJAhEJDl3X6w//XZge5TSzmiKOoY2zDYB4lVD2KeiyN9OUSAS'),
-(6, 'troyhermosa@gmail.com', 'troy hermosa', '$2y$10$sQXQdFlW4l9WUtlk0rYov.BnCv77Le8EwwHG5DssW/O0uPCbwzSH6'),
-(7, 'ruizdavidcabrera@gmail.com', 'rzdvd', '$2y$10$gi2bnnzHImRgCX16okrSve7y0l7FWsGGMYELxMEHsYUa.7jpXf4uS');
+INSERT INTO `users` (`id`, `emailAddress`, `username`, `full_name`, `gender`, `contact`, `address`, `profile_pic`, `password`) VALUES
+(2, 'gabriellim13@gmail.com', 'gabriel lim', NULL, NULL, NULL, NULL, NULL, '$2y$10$q/q3R9jzwJi8Wrxq6ic7Y.EIY1231l9mvn6gGM3j3jKGQKYkgNC6O'),
+(3, 'ruiz@gmail.com', 'ruizDavid', NULL, NULL, NULL, NULL, NULL, '$2y$10$YQyXxJAhEJDl3X6w//XZge5TSzmiKOoY2zDYB4lVD2KeiyN9OUSAS'),
+(6, 'troyhermosa@gmail.com', 'troy hermosa', NULL, NULL, NULL, NULL, NULL, '$2y$10$sQXQdFlW4l9WUtlk0rYov.BnCv77Le8EwwHG5DssW/O0uPCbwzSH6'),
+(7, 'ruizdavidcabrera@gmail.com', 'rzdvd', NULL, NULL, NULL, NULL, NULL, '$2y$10$gi2bnnzHImRgCX16okrSve7y0l7FWsGGMYELxMEHsYUa.7jpXf4uS');
 
 -- --------------------------------------------------------
 
@@ -230,10 +255,14 @@ INSERT INTO `workout_plan` (`id`, `user_id`, `workout_day`, `exercise_name`, `se
 (28, 2, 'Sun', 'Back Extension', 3, 8, 0, 1, NULL),
 (29, 2, 'Thu', 'Lying Chest Overhead Extension', 3, 10, 0, 1, NULL),
 (30, 2, 'Mon', 'Chest Pres', 3, 6, 0, 0, NULL),
-(31, 2, 'Mon', 'Lying Leg Raise', 3, 8, 0, 1, NULL),
 (32, 2, 'Mon', 'Chest Pres', 3, 6, 0, 0, NULL),
-(33, 2, 'Mon', 'Standing Bicep Cable Curl', 3, 8, 0, 1, NULL),
-(34, 2, 'Tue', 'Barbell Kneeling Squat', 2, 8, 0, 0, '2025-06-17');
+(34, 2, 'Tue', 'Barbell Kneeling Squat', 2, 8, 0, 0, '2025-06-17'),
+(35, 2, 'Sun', 'Lying Chest Overhead Extension', 3, 10, 0, 0, '2025-06-22'),
+(36, 2, 'Wed', 'Lying Chest Overhead Extension', 3, 10, 0, 0, '2025-06-18'),
+(37, 2, 'Wed', 'T-Bar Row', 3, 8, 0, 0, '2025-06-18'),
+(39, 2, 'Mon', 'Chest Press', 3, 6, 0, 0, '2025-06-16'),
+(40, 2, 'Mon', 'Lying Chest Overhead Extension', 3, 10, 0, 0, '2025-06-16'),
+(41, 2, 'Mon', 'Push Up', 3, 6, 0, 0, '2025-06-16');
 
 --
 -- Indexes for dumped tables
@@ -304,7 +333,7 @@ ALTER TABLE `workout_plan`
 -- AUTO_INCREMENT for table `measurements`
 --
 ALTER TABLE `measurements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -316,7 +345,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_history`
 --
 ALTER TABLE `user_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_info`
@@ -340,7 +369,7 @@ ALTER TABLE `workouts`
 -- AUTO_INCREMENT for table `workout_plan`
 --
 ALTER TABLE `workout_plan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables

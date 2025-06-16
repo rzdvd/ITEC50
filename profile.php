@@ -1,8 +1,40 @@
 <?php
-    session_start();
-    include("database.php");
+session_start();
+include("database.php");
 
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
 
+$user_id = $_SESSION['user_id'];
+$pageId = 'profile';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_id = $_SESSION['user_id'];
+    $username = $_POST['username'];
+    $full_name = $_POST['full_name'];
+    $gender = $_POST['gender'];
+    $address = $_POST['address'];
+    $email = $_POST['emailAddress'];
+    $contact = $_POST['contact'];
+    $profile_pic = $_POST['profile_pic'];
+
+    $stmt = $conn->prepare("UPDATE users SET username=?, full_name=?, gender=?, address=?, emailAddress=?, contact=?, profile_pic=? WHERE id=?");
+    $stmt->bind_param("sssssssi", $username, $full_name, $gender, $address, $email, $contact, $profile_pic, $user_id);
+    $stmt->execute();
+    $stmt->close();
+
+    header("Location: profile.php");
+    exit();
+}
+
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -17,15 +49,7 @@
     <div class="nav">
         <ul>
             <li>
-                <a href="">
-                    <div>
-                        <img src="" alt="">
-                        <p></p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="home.html">
+                <a href="home.php" class="<?= ($pageId == 'home') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/home-icon.webp" alt="">
                         <p>Home</p>
@@ -33,7 +57,7 @@
                 </a>
             </li>
             <li>
-                <a href="workouts.php">
+                <a href="workouts.php" class="<?= ($pageId == 'workouts') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/workouts-icon.webp" alt="">
                         <p>Workouts</p>
@@ -41,7 +65,7 @@
                 </a>
             </li>
             <li>
-                <a href="plans.php">
+                <a href="plans.php" class="<?= ($pageId == 'plans') ? 'active' : '' ?>" >
                     <div>
                         <img src="assets/images/plans-icon.webp" alt="">
                         <p>Plans</p>
@@ -49,7 +73,7 @@
                 </a>
             </li>
             <li>
-                <a href="history.php">
+                <a href="history.php" class="<?= ($pageId == 'history') ? 'active' : '' ?>" >
                     <div>
                         <img src="assets/images/history-icon.webp" alt="">
                         <p>History</p>
@@ -57,7 +81,7 @@
                 </a>
             </li>
             <li>
-                <a href="progress.php">
+                <a href="progress.php" class="<?= ($pageId == 'progress') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/progress-icon.webp" alt="">
                         <p>Progress</p>
@@ -65,7 +89,7 @@
                 </a>
             </li>
             <li>
-                <a href="profile.html">
+                <a href="profile.php" class="<?= ($pageId == 'profile') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/profile-icon.svg" alt="">
                         <p>Profile</p>
@@ -74,6 +98,7 @@
             </li>
         </ul>
     </div>
+    
     <div class="content">
 
         <div class="profile-header">
@@ -81,14 +106,14 @@
                 <img src="assets/images/profile-background.png" alt="Cover Image" />
             </div>
             <div class="profile-header-content">
-                <img class="avatar" src="assets/images/avatar.jpg" alt=" " />
+                <img class="avatar" src="assets/images/default.png" alt=" " />
                 <div class="info">
                     <h1 id="main-username">username_123</h1>
                     <p id="main-fullname">Full name</p>
                 </div>
                 <div class="buttons">
                     <button>Edit profile</button>
-                    <button>Logout</button>
+                    <button onclick="window.location.href='logout.php'">Logout</button>
                 </div>
             </div>
         </div>
@@ -115,30 +140,31 @@
             <img src="assets/images/avatar5.jpg" class="profile-pic-option" alt="Profile 5">
             </div>
             <hr>
-            <form class="edit-profile-form" action="profile.php" method="POST">
-            <label>Username
-                <input type="text" id="edit-username" value=" ">
-            </label>
-            <label>Name
-                <input type="text" id="edit-fullname" value=" ">
-            </label>
-            <label>Gender
-                <select id="edit-gender">
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                </select>
-            </label>
-            <label>Address
-                <input type="text" id="edit-address">
-            </label>
-            <label>Email Address
-                <input type="email" id="edit-email">
-            </label>
-            <label>Contact
-                <input type="text" id="edit-contact">
-            </label>
-            <button type="button" id="closeModalBtn">Done</button>
+            <form class="edit-profile-form" method="POST" action="profile.php">
+                <input type="hidden" name="profile_pic" id="profile_pic_input" value="<?= htmlspecialchars($user['profile_pic']) ?>">
+                <label>Username
+                    <input type="text" id="edit-username" name="username" value="<?= htmlspecialchars($user['username']) ?>" required>
+                </label>
+                <label>Name
+                    <input type="text" id="edit-fullname" name="full_name" value="<?= htmlspecialchars($user['full_name']) ?>" required>
+                </label>
+                <label>Gender
+                    <select id="edit-gender" name="gender">
+                        <option <?= $user['gender'] === 'Male' ? 'selected' : '' ?>>Male</option>
+                        <option <?= $user['gender'] === 'Female' ? 'selected' : '' ?>>Female</option>
+                        <option <?= $user['gender'] === 'Other' ? 'selected' : '' ?>>Other</option>
+                    </select>
+                </label>
+                <label>Address
+                    <input type="text" id="edit-address" name="address" value="<?= htmlspecialchars($user['address']) ?>">
+                </label>
+                <label>Email Address
+                    <input type="email" id="edit-email" name="emailAddress" value="<?= htmlspecialchars($user['emailAddress']) ?>">
+                </label>
+                <label>Contact
+                    <input type="text" id="edit-contact" name="contact" value="<?= htmlspecialchars($user['contact']) ?>">
+                </label>
+                <button type="submit">Done</button>
             </form>
         </div>
     </div>
@@ -159,6 +185,7 @@
                 document.querySelectorAll('.profile-pic-option').forEach(i => i.classList.remove('selected'));
                 this.classList.add('selected');
                 selectedAvatarSrc = this.src;
+                document.getElementById('profile_pic_input').value = this.getAttribute('src');
             }
         });
         
@@ -182,6 +209,8 @@
         document.getElementById('editProfileModal').onclick = function(e) {
             if (e.target === this) this.style.display = 'none';
         };
+
+        
     </script>
 </body>
 </html>

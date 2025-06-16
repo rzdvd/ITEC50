@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+$pageId = 'history';
 ?>
 
 <!DOCTYPE html>
@@ -24,15 +25,7 @@ if (!isset($_SESSION['user_id'])) {
     <div class="nav">
         <ul>
             <li>
-                <a href="">
-                    <div>
-                        <img src="" alt="">
-                        <p></p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="home.php">
+                <a href="home.php" class="<?= ($pageId == 'home') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/home-icon.webp" alt="">
                         <p>Home</p>
@@ -40,7 +33,7 @@ if (!isset($_SESSION['user_id'])) {
                 </a>
             </li>
             <li>
-                <a href="workouts.php">
+                <a href="workouts.php" class="<?= ($pageId == 'workouts') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/workouts-icon.webp" alt="">
                         <p>Workouts</p>
@@ -48,7 +41,7 @@ if (!isset($_SESSION['user_id'])) {
                 </a>
             </li>
             <li>
-                <a href="plans.php">
+                <a href="plans.php" class="<?= ($pageId == 'plans') ? 'active' : '' ?>" >
                     <div>
                         <img src="assets/images/plans-icon.webp" alt="">
                         <p>Plans</p>
@@ -56,7 +49,7 @@ if (!isset($_SESSION['user_id'])) {
                 </a>
             </li>
             <li>
-                <a href="history.php">
+                <a href="history.php" class="<?= ($pageId == 'history') ? 'active' : '' ?>" >
                     <div>
                         <img src="assets/images/history-icon.webp" alt="">
                         <p>History</p>
@@ -64,7 +57,7 @@ if (!isset($_SESSION['user_id'])) {
                 </a>
             </li>
             <li>
-                <a href="progress.php">
+                <a href="progress.php" class="<?= ($pageId == 'progress') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/progress-icon.webp" alt="">
                         <p>Progress</p>
@@ -72,7 +65,7 @@ if (!isset($_SESSION['user_id'])) {
                 </a>
             </li>
             <li>
-                <a href="profile.html">
+                <a href="profile.php" class="<?= ($pageId == 'profile') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/profile-icon.svg" alt="">
                         <p>Profile</p>

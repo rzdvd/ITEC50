@@ -1,13 +1,21 @@
 <?php
+session_start();
 include 'database.php';
+
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(['error' => 'Unauthorized']);
+    exit;
+}
+$user_id = $_SESSION['user_id'];
+
 
 // Prepare 7-day window (today - 3 days, today + 3 days)
 $startDate = date("Y-m-d", strtotime("-3 days"));
 $endDate = date("Y-m-d", strtotime("+3 days"));
 
 // Fetch weight data within this window
-$stmt = $conn->prepare("SELECT log_date, weight FROM weight WHERE log_date BETWEEN ? AND ?");
-$stmt->bind_param("ss", $startDate, $endDate);
+$stmt = $conn->prepare("SELECT log_date, weight FROM weight WHERE user_id = ? AND log_date BETWEEN ? AND ?");
+$stmt->bind_param("iss", $user_id, $startDate, $endDate);
 $stmt->execute();
 $result = $stmt->get_result();
 

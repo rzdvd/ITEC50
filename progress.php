@@ -64,8 +64,8 @@ if ($result && $result->num_rows > 0) {
 }
 $stmt->close();
 
-$pageTitle = "Plans";
-$pageId = "plans";
+$pageTitle = "Progress";
+$pageId = "progress";
 include 'includes/header.php';
 ?>
 
