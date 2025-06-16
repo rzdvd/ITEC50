@@ -307,8 +307,105 @@ body {
   background-position: 60%, 60%;
 }
 
+@media (max-width: 600px) {
+  .nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+  }
 
+  .content {
+    margin-left: 0;
+    margin-bottom: 60px; /* prevent content from being covered by nav */
+  }
 
+  .nav ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 
+  .nav ul li {
+    margin: 0;
+  }
 
+  .nav ul li a div {
+    flex-direction: column;
+    padding: 5px;
+  }
 
+  .body {
+    max-width: 90vh;
+    max-height: 100vh;
+    margin: 0;
+    justify-items: center;
+  }
+
+  .content{
+    max-width: 100vh;
+    height: 100vh;
+    padding: 1rem;
+    padding-top: 1rem;
+  }
+
+  .upperPart {
+    max-width: 100vh;
+    min-height: 70vh;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .leftSide {
+    width: 100%;
+    padding: 0.8rem;
+  }
+
+  #fitna {
+  height: 47%;
+  }
+
+  .rightSide {
+    width: 100%;
+  }
+
+  .todaysPlan {
+    min-width: 100%;
+    max-height: 40vh;
+  }
+
+  .todaysPlan h1 {
+    margin-top: 1rem;
+    font-size: 20px;
+  }
+
+  .plannedWO p {
+    padding: 0.8rem;
+    font-size: 13px;
+  }
+
+  .middlePart {
+    max-width: 100vh;
+    min-height: 20vh;
+  }
+
+  .quotes-holder h1 {
+    font-size: 20px;
+  }
+
+  .quotes {
+    height: 75%;
+  }
+
+  .quotes p {
+    font-size: 15px;
+  }
+
+  
+}
