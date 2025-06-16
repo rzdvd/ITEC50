@@ -43,7 +43,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles/profile-styles.css">
-    <title>Document</title>
+    <title>Fitna - Profile</title>
 </head>
 <body>
     <div class="nav">
