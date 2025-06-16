@@ -133,7 +133,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </main>
 
-    <script src="assets/history.js"></script>
+    <script src="assets/js/history.js"></script>
 </body>
 
 </html>
