@@ -108,15 +108,22 @@ body {
 
 .todaysPlan h1 {
   margin-left: 20px;
-  margin-top: 20px;
   font-size: 23px;
 }
 
 .plannedWOs {
-  height: 90%;
-  width: 100%;
+  height: 77%;
+  width: 90%;
   overflow: auto;
   padding-right: 15px;
+  justify-self: center;
+  margin-top: 5px;
+}
+
+.plannedWO {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .plannedWOs::-webkit-scrollbar {
@@ -127,6 +134,13 @@ body {
 .plannedWOs::-webkit-scrollbar-thumb {
   background-color: #650d1c87;
   border-radius: 15px;
+}
+
+.plannedWO p{
+  background-color: #f2ebeb46;
+  border-radius: 20px;
+  padding: 15px;
+  font-weight: 600;
 }
 
 .middlePart {

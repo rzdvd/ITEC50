@@ -7,6 +7,15 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+$user_id = $_SESSION['user_id'];
+$today = date('Y-m-d');
+
+$sql = $conn->prepare("SELECT * FROM workout_plan WHERE user_id = ? AND planned_date = ?");
+$sql->bind_param("is", $user_id, $today);
+$sql->execute();
+$result = $sql->get_result();
+?>
+
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +100,17 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="todaysPlan">
                     <h1>Today's Plan</h1>
                     <div class="plannedWOs">
-                        <div class="plannedWO"></div>
+                        <div class="plannedWO">
+                            <?php if ($result->num_rows > 0): ?>
+                                <?php while ($row = $result->fetch_assoc()): ?>
+                                    <p>
+                                        <strong><?= htmlspecialchars($row['exercise_name']) ?></strong>
+                                    </p>
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                <p>You have no workout plans for today.</p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
