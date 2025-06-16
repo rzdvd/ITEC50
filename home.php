@@ -26,6 +26,7 @@ $quotes = [
 ];
 
 $randomQuote = $quotes[array_rand($quotes)];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
