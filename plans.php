@@ -327,6 +327,8 @@ include 'includes/header.php';
             }
         }
 
+        dropdown.dispatchEvent(new Event('change'));
+
         document.getElementById('workoutModal').style.display = 'flex';
     }
 });
