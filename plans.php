@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
 
     $deleteId = intval($_POST['delete_id']);
 
-    $stmt = $conn->prepare("DELETE FROM workout_plan WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM workout_plan WHERE id = ? AND user_id = ?");
     $stmt->bind_param("ii", $deleteId, $user_id);
     $stmt->execute();
     $stmt->close();
