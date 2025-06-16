@@ -322,24 +322,20 @@ body {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 60px;
-    background-color: #510c17;
-    z-index: 1000;
-    display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 0;
+    padding: 0 10px;
   }
 
+
   .nav ul {
-    display: flex;
-    flex-direction: row;
     width: 100%;
-    height: 100%;
+    display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 0;
   }
 
   .nav ul li {
@@ -348,17 +344,11 @@ body {
 
   .nav ul li a div {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 5px;
   }
 
-  .nav ul li a div p {
+  .nav ul li a div p{
     display: none;
-  }
-
-  .nav img {
-    height: 28px;
-    width: 28px;
   }
 
   /* bungad i2 ng pfp */
