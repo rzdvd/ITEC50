@@ -11,7 +11,7 @@
 
 body {
   min-height: 100vh;
-  width: 100vw;
+  width: 98vw;
   background-color: #650d1b;
   display: flex;
 }
@@ -55,18 +55,17 @@ body {
 }
 
 .content {
-  width: 100%;
+  width: 95%;
   align-items: center;
   justify-items: center;
   gap: 20px;
-  overflow-x: hidden;
   padding: 30px;
 }
 
 .upperPart {
   display: flex;
   height: 55%;
-  width: 80%;
+  width: 95%;
   justify-content: center;
   align-items: center;
 }
@@ -132,7 +131,7 @@ body {
 
 .middlePart {
   margin-top: 25px;
-  width: 80%;
+  width: 95%;
   height: 20%;
   justify-items: center;
 }
@@ -189,14 +188,16 @@ body {
 
 .bottomPart {
   display: flex;
-  height: 50%;
-  width: 80%;
+  height: 60%;
+  width: 85%;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
   margin-bottom: 50px;
   color: #fff;
   align-items: flex-start;
+  margin-left: -9%;
+
 }
 
 .scrollableMenu h2 {
@@ -219,6 +220,7 @@ body {
   white-space: nowrap;
   gap: 20px;
   padding: 20px;
+  
 }
 
 .bodyPartImage {

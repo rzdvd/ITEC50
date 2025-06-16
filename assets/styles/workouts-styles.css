@@ -1,13 +1,13 @@
+/* GLOBAL STYLES */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
 body {
     height: 100vh;
-    width: 100vw;
+    width: 99%;
     background-color: #650d1b;
     display: flex;
 }
@@ -54,7 +54,7 @@ body {
 
 .content {
     margin-left: 5%;
-    width: 95%;
+    width: 100%;
     height: 100%;
     padding: 30px;
     box-sizing: border-box;
@@ -63,45 +63,9 @@ body {
     align-items: center;
 }
 
-/* SEARCH BAR */
-.search-bar {
-    width: 80%;
-    margin: 0 auto 30px auto;
-    display: flex;
-    align-items: center;
-    background: #843d49;
-    border-radius: 30px;
-    padding: 8px 20px;
-    box-sizing: border-box;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.search-bar input[type="text"] {
-    flex: 1;
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-size: 22px;
-    outline: none;
-    padding: 8px 0;
-}
-
-.search-bar button {
-    background: #e6d0d0;
-    color: #843d49;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 28px;
-    font-size: 20px;
-    font-weight: 600;
-    margin-left: 10px;
-    cursor: not-allowed;
-    transition: background 0.2s;
-}
-
 /* MAIN SECTION */
 .workout-main {
-    width: 80%;
+    width: 95%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -128,6 +92,7 @@ body {
     margin-bottom: 10px;
     position: relative;
     min-height: 220px;
+    z-index: 1;
 }
 
 .carousel-arrow {
@@ -156,7 +121,7 @@ body {
 .carousel-arrow img {
     width: 40px;
     height: 40px;
-    filter: invert(90%);
+    
 }
 
 .carousel-arrow:active {
@@ -210,6 +175,7 @@ body {
     height: 200px;
     transform: translateX(110px) scale(0.92);
     opacity: 0.7;
+    z-index: 2;
 }
 .carousel-img-stack img.far-left {
     left: 0;
@@ -278,7 +244,7 @@ body {
 
 /* EXERCISE LIST */
 .exercise-list-section {
-    width: 80%;
+    width: 95%;
     background: #843d49;
     border-radius: 24px;
     margin-top: 10px;
@@ -330,6 +296,136 @@ body {
     padding: 6px 28px;
     font-size: 1.1rem;
     font-weight: 600;
-    cursor: not-allowed;
+    cursor: pointer;
     transition: background 0.2s;
+}
+
+/* Modal Overlay */
+.exercise-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(60, 0, 20, 0.65);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content */
+.exercise-modal-content {
+    background: #843d49;
+    border-radius: 40px;
+    padding: 32px 32px 24px 32px;
+    display: flex;
+    gap: 24px;
+    min-width: 580px;
+    max-width: 700px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    position: relative;
+    color: #fff;
+    animation: popIn 0.25s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes popIn {
+    from { transform: scale(0.96); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.exercise-modal-images {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.exercise-modal-images img {
+    width: 180px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 18px;
+    background: #fff;
+}
+
+.exercise-modal-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.exercise-modal-details h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.exercise-modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.exercise-modal-info > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.exercise-modal-info hr {
+    border: none;
+    border-top: 2px solid #fff;
+    margin: 8px 0;
+}
+
+.exercise-modal-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 18px;
+    margin-right: 5%;
+    text-align: right;
+}
+
+.exercise-modal-actions button {
+    background: #650d1b;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    padding: 8px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.exercise-modal-actions .return-btn {
+    background: #843d49;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.exercise-modal-actions button:hover {
+    background: #b33b50;
+}
+
+@media (max-width: 700px) {
+    .exercise-modal-content {
+        flex-direction: column;
+        min-width: 90vw;
+        max-width: 98vw;
+        padding: 18px 8px;
+    }
+    .exercise-modal-images {
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+    }
+    .exercise-modal-images img {
+        width: 48vw;
+        height: 80px;
+    }
 }

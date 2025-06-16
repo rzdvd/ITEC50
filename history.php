@@ -40,7 +40,7 @@ if (!isset($_SESSION['user_id'])) {
                 </a>
             </li>
             <li>
-                <a href="workouts.html">
+                <a href="workouts.php">
                     <div>
                         <img src="assets/images/workouts-icon.webp" alt="">
                         <p>Workouts</p>

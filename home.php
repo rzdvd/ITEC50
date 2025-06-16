@@ -40,7 +40,7 @@ if (!isset($_SESSION['user_id'])) {
                 </a>
             </li>
             <li>
-                <a href="workouts.html">
+                <a href="workouts.php">
                     <div>
                         <img src="assets/images/workouts-icon.webp" alt="">
                         <p>Workouts</p>
@@ -114,7 +114,7 @@ if (!isset($_SESSION['user_id'])) {
             <div class="scrollableMenu">
                 <h2>Explore</h2>
                 <div class="bodyPartImages">
-                    <a href="workouts.html?bodypart=back" class="bodyPartLink">
+                    <a href="workouts.php?bodypart=back" class="bodyPartLink">
                         <div class="bodyPartImage" id="bpi1">
                             <p>Back <br> Workouts</p>
                             <button id="redirectBtn">
@@ -122,7 +122,7 @@ if (!isset($_SESSION['user_id'])) {
                             </button>
                         </div>
                     </a>
-                    <a href="workouts.html?bodypart=chest" class="bodyPartLink">
+                    <a href="workouts.php?bodypart=chest" class="bodyPartLink">
                         <div class="bodyPartImage" id="bpi2">
                             <p>Chest <br> Workouts</p>
                             <button id="redirectBtn">
@@ -130,7 +130,7 @@ if (!isset($_SESSION['user_id'])) {
                             </button>
                         </div>
                     </a>
-                    <a href="workouts.html?bodypart=core" class="bodyPartLink">
+                    <a href="workouts.php?bodypart=core" class="bodyPartLink">
                         <div class="bodyPartImage" id="bpi3">
                             <p>Core <br> Workouts</p>
                             <button id="redirectBtn">
@@ -138,7 +138,7 @@ if (!isset($_SESSION['user_id'])) {
                             </button>
                         </div>
                     </a>
-                    <a href="workouts.html?bodypart=arms" class="bodyPartLink">
+                    <a href="workouts.php?bodypart=arms" class="bodyPartLink">
                         <div class="bodyPartImage" id="bpi4">
                             <p>Arms <br> Workouts</p>
                             <button id="redirectBtn">
@@ -146,7 +146,7 @@ if (!isset($_SESSION['user_id'])) {
                             </button>
                         </div>
                     </a>
-                    <a href="workouts.html?bodypart=legs" class="bodyPartLink">
+                    <a href="workouts.php?bodypart=legs" class="bodyPartLink">
                         <div class="bodyPartImage" id="bpi5">
                             <p>Legs <br> Workouts</p>
                             <button id="redirectBtn">
@@ -154,7 +154,7 @@ if (!isset($_SESSION['user_id'])) {
                             </button>
                         </div>
                     </a>
-                    <a href="workouts.html?bodypart=glutes" class="bodyPartLink">
+                    <a href="workouts.php?bodypart=glutes" class="bodyPartLink">
                         <div class="bodyPartImage" id="bpi6">
                             <p>Glutes <br> Workouts</p>
                             <button id="redirectBtn">

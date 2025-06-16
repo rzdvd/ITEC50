@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    include("database.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,7 +115,7 @@
             <img src="assets/images/avatar5.jpg" class="profile-pic-option" alt="Profile 5">
             </div>
             <hr>
-            <form class="edit-profile-form">
+            <form class="edit-profile-form" action="profile.php" method="POST">
             <label>Username
                 <input type="text" id="edit-username" value=" ">
             </label>
@@ -178,3 +185,7 @@
     </script>
 </body>
 </html>
+
+<?php
+    mysqli_close($conn);
+?>

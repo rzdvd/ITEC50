@@ -1,5 +1,11 @@
 <?php
-include 'database.php';
+session_start();
+include("database.php");
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
 
 $currentDay = $_GET['day'] ?? date('D');
 
@@ -24,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['workout'])) {
     $reps = $_POST['reps'];
     $duration = $_POST['duration'];
 
-    $stmt = $conn->prepare("INSERT INTO workout_plan (plan_id, workout_day, exercise_name, sets, reps) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO workout_plan (user_id, workout_day, exercise_name, sets, reps) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("issss", $plan_id, $workout_day, $workout, $sets, $reps);
     $stmt->execute();
     $stmt->close();
@@ -46,9 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_completed_id']
     header("Location: plans.php?day=".$currentDay);
     exit();
 }
-
-
-
 
 $sql = "SELECT id, name, focus, sets, reps FROM workouts";
 $result = $conn->query($sql);
