@@ -64,7 +64,7 @@ if (isset($_SESSION['login_error'])) {
             </div>
             <input type="submit" class="button" id="loginButton" name="loginButton" value="Log In">
         </form>
-        <p>Don't have an account? <a href="createAccount.html">Sign up</a></p>
+        <p>Don't have an account? <a href="createAccount.php">Sign up</a></p>
     </div>
     <img src="assets/images/Fitna.png" alt="">
 

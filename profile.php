@@ -83,7 +83,7 @@ $stmt->close();
                 </a>
             </li>
             <li>
-                <a href="profile.html">
+                <a href="profile.php">
                     <div>
                         <img src="assets/images/profile-icon.svg" alt="">
                         <p>Profile</p>
