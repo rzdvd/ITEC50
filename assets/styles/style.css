@@ -720,3 +720,167 @@ hr {
   margin-top: 2rem;
 }
 
+@media (max-width: 900px) {
+  .nav {
+    width: 60px;
+    min-width: 60px;
+    padding-top: 0.5rem;
+  }
+  .nav ul li a div p {
+    display: none;
+  }
+  .content, #plans, #history, #progress {
+    margin-left: 60px;
+    padding-left: 0;
+  }
+  .container1, .container2 {
+    width: 98vw;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .calendar, .history {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+  }
+  .verticalLine {
+    display: none;
+  }
+  .box {
+    width: 100%;
+    margin-bottom: 10px;
+    aspect-ratio: unset;
+    height: auto;
+  }
+  .workouts-plan, .measurements, .measurements-data, .streak {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  #workout-plan, .chartContainer {
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    width: 40px;
+    min-width: 40px;
+  }
+  .container1, .container2 {
+    width: 100vw;
+    border-radius: 0;
+    padding: 0;
+  }
+  .calendar, .history {
+    font-size: 11px;
+  }
+  .date, .day {
+    width: 24px;
+    min-width: 24px;
+    font-size: 11px;
+    padding: 6px;
+  }
+  .box {
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 15px;
+  }
+  .workout, .add {
+    padding: 8px 8px;
+    font-size: 13px;
+  }
+  .name img {
+    height: 30px;
+  }
+  .modal-content {
+    width: 95vw;
+    padding: 10px;
+  }
+  .measurements, .measurements-data, .streak {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  .chartContainer {
+    padding: 0.5rem;
+    height: 250px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Move nav to bottom */
+  .nav {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: unset;
+    height: 60px;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .nav ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+  }
+
+  .nav ul li {
+    margin: 0;
+  }
+
+  .nav ul li a div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav ul li a div p {
+    display: none;
+  }
+
+  .nav img {
+    height: 28px;
+    width: 28px;
+  }
+
+  /* Content adjustment to prevent overlap with nav */
+  .content, #plans, #history, #progress {
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 70px; /* leave space for bottom nav */
+  }
+
+  .container1, .container2, #workout-plan, .chartContainer, .measurements, .streak {
+    margin-bottom: 70px;
+  }
+
+  .workouts-plan, .measurements, .measurements-data, .streak {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .nav {
+    height: 48px;
+    max-height: 48px;
+  }
+  .nav img {
+    height: 22px;
+    width: 22px;
+  }
+  .container1, .container2, #workout-plan, .chartContainer, .measurements, .streak {
+    margin-bottom: 55px;
+  }
+}
