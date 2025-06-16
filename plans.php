@@ -55,6 +55,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_completed_id']
     $stmt->execute();
     $stmt->close();
 
+    // If just marked as completed, record in user_history
+    if ($newStatus === 1) {
+        $stmt = $conn->prepare("SELECT user_id, exercise_name, reps, sets, duration FROM workout_plan WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            $user_id = $row['user_id'];
+            $exercise_name = $row['exercise_name'];
+            $reps = intval($row['reps']);
+            $sets = intval($row['sets']);
+            $duration = intval($row['duration']);
+            $completed_at = date('Y-m-d');
+            $stmt2 = $conn->prepare("INSERT INTO user_history (user_id, exercise_name, reps, sets, duration_seconds, completed_at) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt2->bind_param("isiiis", $user_id, $exercise_name, $reps, $sets, $duration, $completed_at);
+            $stmt2->execute();
+            $stmt2->close();
+        }
+        $stmt->close();
+    }
+
+    // If just unchecked (marked as not completed), delete from user_history
+    if ($newStatus === 0) {
+        $stmt = $conn->prepare("SELECT user_id, exercise_name FROM workout_plan WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            $user_id = $row['user_id'];
+            $exercise_name = $row['exercise_name'];
+            $completed_at = date('Y-m-d');
+            // Delete the most recent matching record for this user, exercise, and date
+            $stmt2 = $conn->prepare("DELETE FROM user_history WHERE id = (SELECT id FROM (SELECT id FROM user_history WHERE user_id = ? AND exercise_name = ? AND completed_at = ? ORDER BY id DESC LIMIT 1) AS t)");
+            $stmt2->bind_param("iss", $user_id, $exercise_name, $completed_at);
+            $stmt2->execute();
+            $stmt2->close();
+        }
+        $stmt->close();
+    }
+
     header("Location: plans.php?day=".$currentDay);
     exit();
 }

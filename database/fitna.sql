@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 02:31 PM
+-- Generation Time: Jun 16, 2025 at 03:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `measurements` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `log_date` date DEFAULT NULL,
   `waist` decimal(5,2) DEFAULT NULL,
   `hips` decimal(5,2) DEFAULT NULL,
@@ -42,26 +42,7 @@ CREATE TABLE `measurements` (
 --
 
 INSERT INTO `measurements` (`id`, `user_id`, `log_date`, `waist`, `hips`, `thigh`, `arm`) VALUES
-(1, NULL, '2025-06-15', 0.05, NULL, NULL, NULL),
-(2, NULL, '2025-06-15', 0.05, NULL, NULL, NULL),
-(3, NULL, '2025-06-15', 0.05, NULL, NULL, NULL),
-(4, NULL, '2025-06-15', 0.05, NULL, -0.02, NULL),
-(5, NULL, '2025-06-15', NULL, NULL, NULL, NULL),
-(6, NULL, '2025-06-15', NULL, NULL, NULL, NULL),
-(7, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(8, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(9, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(10, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(11, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(12, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(13, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(14, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(15, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(16, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(17, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(18, NULL, '2025-06-15', 0.04, NULL, NULL, NULL),
-(19, NULL, '2025-06-16', 0.04, 25.00, NULL, NULL),
-(20, NULL, '2025-06-16', 0.04, 25.00, NULL, 99.00);
+(21, 2, '2025-06-16', 65.00, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -109,7 +90,9 @@ CREATE TABLE `user_history` (
 INSERT INTO `user_history` (`id`, `user_id`, `exercise_name`, `reps`, `sets`, `duration_seconds`, `completed_at`) VALUES
 (1, 2, 'Pull Ups', 8, 3, 40, '2025-06-14'),
 (2, 2, 'Sit Ups', 9, 3, 30, '2025-06-14'),
-(3, 2, 'Dumbbells', 12, 3, 20, '2025-06-13');
+(3, 2, 'Dumbbells', 12, 3, 20, '2025-06-13'),
+(10, 2, 'Lying Leg Raise', 8, 3, 0, '2025-06-16'),
+(11, 2, 'Standing Bicep Cable Curl', 8, 3, 0, '2025-06-16');
 
 -- --------------------------------------------------------
 
@@ -137,7 +120,7 @@ CREATE TABLE `user_info` (
 
 CREATE TABLE `weight` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `log_date` date DEFAULT NULL,
   `weight` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -147,24 +130,25 @@ CREATE TABLE `weight` (
 --
 
 INSERT INTO `weight` (`id`, `user_id`, `log_date`, `weight`) VALUES
-(1, NULL, '2025-06-15', 50.00),
-(2, NULL, '2025-06-14', 50.00),
-(3, NULL, '2025-06-15', 5.00),
-(4, NULL, '2025-06-15', 4.00),
-(5, NULL, '2025-06-15', 4.00),
-(6, NULL, '2025-06-13', 55.00),
-(7, NULL, '2025-06-15', 55.00),
-(8, NULL, '2025-06-15', 50.00),
-(9, NULL, '2025-06-15', 50.00),
-(10, NULL, '2025-06-15', 60.00),
-(11, NULL, '2025-06-15', 60.00),
-(12, NULL, '2025-06-15', 50.00),
-(13, NULL, '2025-06-15', 51.00),
-(14, NULL, '2025-06-15', 51.00),
-(15, NULL, '2025-06-16', 50.00),
-(16, NULL, '2025-06-16', 50.00),
-(17, NULL, '2025-06-16', 50.00),
-(18, NULL, '2025-06-16', 50.00);
+(1, 2, '2025-06-15', 50.00),
+(2, 2, '2025-06-14', 50.00),
+(3, 2, '2025-06-15', 5.00),
+(4, 2, '2025-06-15', 4.00),
+(5, 2, '2025-06-15', 4.00),
+(6, 2, '2025-06-13', 55.00),
+(7, 2, '2025-06-15', 55.00),
+(8, 2, '2025-06-15', 50.00),
+(9, 2, '2025-06-15', 50.00),
+(10, 2, '2025-06-15', 60.00),
+(11, 2, '2025-06-15', 60.00),
+(12, 2, '2025-06-15', 50.00),
+(13, 2, '2025-06-15', 51.00),
+(14, 2, '2025-06-15', 51.00),
+(15, 2, '2025-06-16', 50.00),
+(16, 2, '2025-06-16', 50.00),
+(17, 2, '2025-06-16', 50.00),
+(18, 2, '2025-06-16', 50.00),
+(19, 2, '2025-06-16', 55.00);
 
 -- --------------------------------------------------------
 
@@ -194,7 +178,7 @@ INSERT INTO `workouts` (`id`, `name`, `image_url`, `image_url2`, `focus`, `equip
 (3, 'Lat Pulldown', 'back5.gif', 'back6.gif', 'back', 'Lat Pulldown Machine', '12-15 reps', '', '3 sets'),
 (4, 'Back Extension', 'back7.gif', 'back8.gif', 'back', 'Bench', '8-12 reps', '', '3 sets'),
 (5, 'T-Bar Row', 'back9.gif', 'back10.gif', 'back', 'Barbell / EZ-Bar', '8-12 reps', '', '3 sets'),
-(6, 'Chest Pres', 'chest1.gif', 'chest2.gif', 'chest', 'Barbell / EZ-Bar and Bench', '6-10 reps', '', '3 sets'),
+(6, 'Chest Press', 'chest1.gif', 'chest2.gif', 'chest', 'Barbell / EZ-Bar and Bench', '6-10 reps', '', '3 sets'),
 (7, 'Lying Chest Overhead Extension', 'chest3.gif', 'chest4.gif', 'chest', 'Barbell / EZ-Bar and Bench', '10-12 reps', '', '3 sets'),
 (8, 'Incline Dumbbell Bench Chest Press', 'chest5.gif', 'chest6.gif', 'chest', 'Dumbbells and Bench', '8-12 reps', '', '3 sets'),
 (9, 'Push Up', 'chest7.gif', 'chest8.gif', 'chest', 'No equipment needed', '6-12 reps', '', '3 sets'),
@@ -228,7 +212,7 @@ INSERT INTO `workouts` (`id`, `name`, `image_url`, `image_url2`, `focus`, `equip
 
 CREATE TABLE `workout_plan` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `workout_day` varchar(20) NOT NULL,
   `exercise_name` varchar(100) NOT NULL,
   `sets` int(11) NOT NULL,
@@ -236,6 +220,18 @@ CREATE TABLE `workout_plan` (
   `duration` int(11) NOT NULL DEFAULT 0,
   `completed` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `workout_plan`
+--
+
+INSERT INTO `workout_plan` (`id`, `user_id`, `workout_day`, `exercise_name`, `sets`, `reps`, `duration`, `completed`) VALUES
+(28, 2, 'Sun', 'Back Extension', 3, 8, 0, 1),
+(29, 2, 'Thu', 'Lying Chest Overhead Extension', 3, 10, 0, 1),
+(30, 2, 'Mon', 'Chest Pres', 3, 6, 0, 0),
+(31, 2, 'Mon', 'Lying Leg Raise', 3, 8, 0, 1),
+(32, 2, 'Mon', 'Chest Pres', 3, 6, 0, 0),
+(33, 2, 'Mon', 'Standing Bicep Cable Curl', 3, 8, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -306,7 +302,7 @@ ALTER TABLE `workout_plan`
 -- AUTO_INCREMENT for table `measurements`
 --
 ALTER TABLE `measurements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -318,7 +314,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_history`
 --
 ALTER TABLE `user_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_info`
@@ -330,7 +326,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `weight`
 --
 ALTER TABLE `weight`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `workouts`
@@ -342,7 +338,7 @@ ALTER TABLE `workouts`
 -- AUTO_INCREMENT for table `workout_plan`
 --
 ALTER TABLE `workout_plan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables
