@@ -308,7 +308,7 @@ body {
   body {
     background: #650d1b;
     min-height: 100vh;
-    padding-bottom: 80px; /* Height of nav bar */
+    padding-bottom: 80px;
     overflow-x: hidden;
   }
 
@@ -325,8 +325,6 @@ body {
     align-items: center;
     padding: 0;
   }
-
-
 
   .nav ul {
     display: flex;
@@ -357,6 +355,7 @@ body {
     width: 28px;
   }
 
+  /* bungad i2 ng pfp */
   .content {
     margin: 0;
     width: 100vw;
@@ -380,6 +379,7 @@ body {
     padding-bottom: 16px;
     margin-bottom: 8px;
   }
+
   .profile-header-bg img {
     width: 100%;
     height: 80px;
@@ -390,6 +390,7 @@ body {
     border-top-right-radius: 18px;
     margin-top: -25px;
   }
+
   .profile-header-content {
     display: flex;
     flex-direction: row;
@@ -398,6 +399,7 @@ body {
     margin-top: -20px;
     padding: 0 16px;
   }
+
   .avatar {
     width: 72px;
     height: 72px;
@@ -408,12 +410,14 @@ body {
     margin-right: 12px;
     z-index: 2;
   }
+
   .profile-header .info {
     color: #f6a8a8;
-    margin-top: 10px !important;
+    margin-top: 10px;
     margin-left: 0;
     flex: 1;
   }
+
   .profile-header .info h1 {
     font-size: 15px;
     margin: 0;
@@ -421,12 +425,14 @@ body {
     line-height: 1.1;
     color: #fff;
   }
+
   .profile-header .info p {
     font-size: 12px;
     margin: 0;
     color: #dfbfbf;
     font-weight: 400;
   }
+
   .buttons {
     display: flex;
     flex-direction: column;
@@ -434,6 +440,7 @@ body {
     margin-left: 12px;
     margin-top: 24px;
   }
+
   .buttons button {
     background: #650d1b;
     color: #fff;
@@ -447,6 +454,7 @@ body {
     min-height: 0;
     transition: background 0.2s;
   }
+
   .buttons button:hover {
     background: #b33b50;
   }
@@ -471,11 +479,13 @@ body {
     margin-top: 0;
     margin-bottom: 8px;
   }
+
   .profile-section img.bg-image {
     margin-top: 40px; 
     display: block;
     width: 100%;
   }
+
   .profile-section h2 {
     font-size: 28px;
     font-weight: 700;
@@ -483,6 +493,7 @@ body {
     color: #fff;
     letter-spacing: 1px;
   }
+
   .profile-section p {
     font-size: 18px;
     margin-bottom: 16px;
@@ -493,19 +504,68 @@ body {
     color: #fff;
     font-weight: 500;
   }
-  .profile-section p:last-child {
-    margin-bottom: 0;
-    border-bottom: none;
-  }
+
   .profile-section p img {
     width: 28px;
     height: 28px;
     margin-right: 12px;
     vertical-align: middle;
-    filter: invert(100%);
   }
-  
-  .profile-section img {
-    filter: invert(100%);
+
+  /* Sa edit profile na i2*/
+  .modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+    width: 75vw;
+    height: 95vh;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 14px;
+    padding: 16px 8px 12px 8px;
+    gap: 10px;
   }
+  .modal-content h2 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .profile-pictures {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .profile-pic-option {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border-width: 2px;
+  }
+  .edit-profile-form label {
+    font-size: 12px;
+    margin-bottom: 1px;
+  }
+  .edit-profile-form input,
+  .edit-profile-form select {
+    font-size: 12px;
+    border-radius: 7px;
+    padding: 5px 8px;
+    margin-bottom: 4px;
+  }
+  .edit-profile-form button {
+    padding: 6px 16px;
+    font-size: 13px;
+    border-radius: 7px;
+    margin-top: 6px;
+  }
+.edit-profile-form button:hover {
+  background: #b33b50;
+}
 }
