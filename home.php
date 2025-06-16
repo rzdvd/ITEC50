@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-
+date_default_timezone_set('Asia/Manila');
 $today = date('Y-m-d');
 
 $sql = $conn->prepare("SELECT * FROM workout_plan WHERE user_id = ? AND planned_date = ?");

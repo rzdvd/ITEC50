@@ -286,7 +286,7 @@ button:hover {
 }
 
 .sets, .reps, .duration {
-  font-size: 0.75em;
+  font-size: 1em;
 }
 
 .completed-button img {
