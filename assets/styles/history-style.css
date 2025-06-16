@@ -237,7 +237,7 @@ body {
   padding: 13px;
 }
 
-.data{
+.data {
   height: 70%;
   align-content: center;
   font-weight: 700;
@@ -261,3 +261,120 @@ body {
   flex: 1;
 }
 
+@media screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+  }
+
+  .nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .nav ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .nav ul li {
+    margin: 0;
+  }
+
+  .nav ul li a div {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .nav ul li a div p {
+    display: none;
+  }
+
+  #history {
+    margin-left: 0;
+    margin-bottom: 60px;
+    height: auto;
+    padding: 0.8rem;
+  }
+
+  .container1,
+  .container2 {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+  }
+
+  .calendar,
+  .history {
+    width: 92%;
+  }
+
+  .calendar {
+    max-height: 35vh;
+    margin-bottom: 3px;
+  }
+
+  .history {
+    height: 38vh;
+  }
+
+  .dates {
+    max-height: 50%;
+    gap: 4px;
+  }
+
+  .date {
+    padding: 0.2rem;
+    width: 20px;
+  }
+
+  .history {
+    max-height: 40%;
+  }
+
+  .history h1 {
+    font-size: 23px;
+  }
+
+  .completedWOs {
+    max-height: 80%;
+  }
+
+  .completedWO {
+    font-size: 13px;
+  }
+
+  .box {
+    width: 100%;
+    max-height: 23%;
+    aspect-ratio: auto;
+    margin-bottom: 10px;
+  }
+
+  .verticalLine {
+    height: 2px;
+    width: 90%;;
+  }
+
+  .container2 {
+    max-height: 100vh;
+    margin-bottom: 50px;
+  }
+
+  .box .data {
+    font-size: 25px;
+  }
+
+  .box p {
+    font-size: 12px;
+  }
+}

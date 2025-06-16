@@ -127,7 +127,7 @@ $randomQuote = $quotes[array_rand($quotes)];
         </div>
         <div class="middlePart">
             <div class="quotes-holder">
-                <h1>Motivational Quotes:</h1>
+                <h1>Motivational Quote:</h1>
                 <div class="quotes">
                     <p><?php echo $randomQuote; ?></p>
                 </div>
