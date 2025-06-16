@@ -24,14 +24,6 @@ if (!isset($_SESSION['user_id'])) {
     <div class="nav">
         <ul>
             <li>
-                <a href="">
-                    <div>
-                        <img src="" alt="">
-                        <p></p>
-                    </div>
-                </a>
-            </li>
-            <li>
                 <a href="home.php">
                     <div>
                         <img src="assets/images/home-icon.webp" alt="">
@@ -72,7 +64,7 @@ if (!isset($_SESSION['user_id'])) {
                 </a>
             </li>
             <li>
-                <a href="profile.html">
+                <a href="profile.php">
                     <div>
                         <img src="assets/images/profile-icon.svg" alt="">
                         <p>Profile</p>

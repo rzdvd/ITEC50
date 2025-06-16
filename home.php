@@ -43,14 +43,6 @@ $randomQuote = $quotes[array_rand($quotes)];
     <div class="nav">
         <ul>
             <li>
-                <a href="">
-                    <div>
-                        <img src="" alt="">
-                        <p></p>
-                    </div>
-                </a>
-            </li>
-            <li>
                 <a href="home.php">
                     <div>
                         <img src="assets/images/home-icon.webp" alt="">
@@ -91,7 +83,7 @@ $randomQuote = $quotes[array_rand($quotes)];
                 </a>
             </li>
             <li>
-                <a href="profile.html">
+                <a href="profile.php">
                     <div>
                         <img src="assets/images/profile-icon.svg" alt="">
                         <p>Profile</p>
