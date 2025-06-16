@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -20,6 +21,7 @@ body {
     width: 5%;
     height: 100%;
     left: 0;
+    padding-top: 2rem;
 }
 
 .nav ul {
@@ -35,6 +37,10 @@ body {
 .nav ul li a {
     text-decoration: none;
     color: #fff;
+}
+
+.nav ul li a.active p {
+  color: #ffd35f;
 }
 
 .nav ul li a div {
@@ -413,6 +419,57 @@ body {
 }
 
 @media (max-width: 425px) {
+  body {
+    background: #650d1b;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #510c17;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+  }
+
+  .nav ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+  }
+
+  .nav ul li {
+    margin: 0;
+  }
+
+  .nav ul li a div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav ul li a div p {
+    display: none;
+  }
+
+  .nav img {
+    height: 28px;
+    width: 28px;
+  }
+
   html, body {
     overflow-x: hidden;
     width: 100vw;
@@ -483,49 +540,53 @@ body {
     filter: invert(100%);
   }
   .carousel-focus {
-    width: 210px;
-    height: 110px;
-    background: transparent;
-    border-radius: 18px;
-    overflow: visible;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 4px;
-  }
-  .carousel-img-stack {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 210px;
-    height: 110px;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .carousel-img-stack img {
-    position: absolute;
-    width: 60px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 14px;
-    opacity: 0.5;
-    top: 10px;
-  }
-  .carousel-img-stack .far-left { left: 0; z-index: 1; }
-  .carousel-img-stack .left { left: 20px; z-index: 2; }
-  .carousel-img-stack .right { right: 20px; z-index: 2; }
-  .carousel-img-stack .far-right { right: 0; z-index: 1; }
-  .carousel-main-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 18px;
-    z-index: 3;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    background: #222;
-    display: block;
+  position: relative;
+  width: 210px;
+  height: 110px;
+  border-radius: 18px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-img-stack {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 210px;
+  height: 110px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.carousel-img-stack img {
+  position: absolute;
+  width: 60px;      /* Smaller than main image */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 14px;
+  opacity: 0.5;     /* Slightly faded */
+  top: 15px;        /* Vertically centered */
+  transition: all 0.3s;
+}
+
+.carousel-img-stack .far-left { left: 0; z-index: 1; }
+.carousel-img-stack .left { left: 20px; z-index: 2; }
+.carousel-img-stack .right { right: 20px; z-index: 2; }
+.carousel-img-stack .far-right { right: 0; z-index: 1; }
+
+.carousel-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  z-index: 3;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background: #222;
+  display: block;
+}
   }
   .focus-label {
     position: absolute;

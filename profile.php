@@ -2,7 +2,13 @@
 session_start();
 include("database.php");
 
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
 $user_id = $_SESSION['user_id'];
+$pageId = 'profile';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id'];
@@ -43,7 +49,7 @@ $stmt->close();
     <div class="nav">
         <ul>
             <li>
-                <a href="home.php">
+                <a href="home.php" class="<?= ($pageId == 'home') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/home-icon.webp" alt="">
                         <p>Home</p>
@@ -51,7 +57,7 @@ $stmt->close();
                 </a>
             </li>
             <li>
-                <a href="workouts.php">
+                <a href="workouts.php" class="<?= ($pageId == 'workouts') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/workouts-icon.webp" alt="">
                         <p>Workouts</p>
@@ -59,7 +65,7 @@ $stmt->close();
                 </a>
             </li>
             <li>
-                <a href="plans.php">
+                <a href="plans.php" class="<?= ($pageId == 'plans') ? 'active' : '' ?>" >
                     <div>
                         <img src="assets/images/plans-icon.webp" alt="">
                         <p>Plans</p>
@@ -67,7 +73,7 @@ $stmt->close();
                 </a>
             </li>
             <li>
-                <a href="history.php">
+                <a href="history.php" class="<?= ($pageId == 'history') ? 'active' : '' ?>" >
                     <div>
                         <img src="assets/images/history-icon.webp" alt="">
                         <p>History</p>
@@ -75,7 +81,7 @@ $stmt->close();
                 </a>
             </li>
             <li>
-                <a href="progress.php">
+                <a href="progress.php" class="<?= ($pageId == 'progress') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/progress-icon.webp" alt="">
                         <p>Progress</p>
@@ -83,7 +89,7 @@ $stmt->close();
                 </a>
             </li>
             <li>
-                <a href="profile.php">
+                <a href="profile.php" class="<?= ($pageId == 'profile') ? 'active' : '' ?>">
                     <div>
                         <img src="assets/images/profile-icon.svg" alt="">
                         <p>Profile</p>
@@ -92,6 +98,7 @@ $stmt->close();
             </li>
         </ul>
     </div>
+    
     <div class="content">
 
         <div class="profile-header">
