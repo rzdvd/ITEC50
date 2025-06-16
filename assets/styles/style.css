@@ -7,13 +7,12 @@
 }
 
 body {
-  height: 100vh;
   width: 100vw;
   background-color: #650d1b;
   display: flex;
+  flex-direction: column;
   color: white;
 }
-
 
 .nav {
   position: fixed;
@@ -137,11 +136,11 @@ button:hover {
 /* PLANS PAGE STYLES */
 
 #plans {
-  height: 100%;
-  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   padding-left: 3%;
+  padding-bottom: 80px; /* add bottom padding to prevent content behind navbar */
 }
 
 .date-header {
@@ -180,8 +179,8 @@ button:hover {
     border: none;
     border-radius: 18px;
     margin: 0 4px;
-    padding: 8px 18px;
-    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
@@ -284,6 +283,14 @@ button:hover {
   justify-content: center;
   align-items: center;
   margin-top: 0px;
+}
+
+.sets, .reps, .duration {
+  font-size: 0.75em;
+}
+
+.completed-button img {
+  width: 75%;
 }
 
 .add {
@@ -720,48 +727,6 @@ hr {
   margin-top: 2rem;
 }
 
-@media (max-width: 900px) {
-  .nav {
-    width: 60px;
-    min-width: 60px;
-    padding-top: 0.5rem;
-  }
-  .nav ul li a div p {
-    display: none;
-  }
-  .content, #plans, #history, #progress {
-    margin-left: 60px;
-    padding-left: 0;
-  }
-  .container1, .container2 {
-    width: 98vw;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-  .calendar, .history {
-    width: 100%;
-    min-width: 0;
-    height: auto;
-  }
-  .verticalLine {
-    display: none;
-  }
-  .box {
-    width: 100%;
-    margin-bottom: 10px;
-    aspect-ratio: unset;
-    height: auto;
-  }
-  .workouts-plan, .measurements, .measurements-data, .streak {
-    padding: 1rem;
-    font-size: 1rem;
-  }
-  #workout-plan, .chartContainer {
-    margin: 0.5rem;
-    padding: 0.5rem;
-  }
-}
 
 @media (max-width: 600px) {
   .nav {
@@ -808,21 +773,23 @@ hr {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   /* Move nav to bottom */
   .nav {
     position: fixed;
-    left: 0;
     bottom: 0;
-    top: unset;
+    left: 0;
+    width: 100%;
     height: 60px;
-    width: 100vw;
-    flex-direction: row;
+    background-color: #510c17;
+    z-index: 1000;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0;
-    z-index: 1000;
   }
+
+
 
   .nav ul {
     display: flex;
@@ -868,19 +835,35 @@ hr {
     padding: 1rem;
     font-size: 1rem;
   }
+
+  .date-header {
+    padding-bottom: 0;
+  }
+  .head h5{
+    display: none;
+  }
+  .workout {
+    display: grid;
+    grid-template-columns: 3fr;
+  }
+  
+  #workout-plan {
+    overflow: hidden;
+  }
+
+  .with-edit {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .day-tabs {
+    max-width: 100vw;
+    overflow: auto;
+  }
+  .day-tab {
+    font-size: 1em;
+  }
+  
 }
 
-
-@media (max-width: 600px) {
-  .nav {
-    height: 48px;
-    max-height: 48px;
-  }
-  .nav img {
-    height: 22px;
-    width: 22px;
-  }
-  .container1, .container2, #workout-plan, .chartContainer, .measurements, .streak {
-    margin-bottom: 55px;
-  }
-}

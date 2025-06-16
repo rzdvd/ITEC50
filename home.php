@@ -16,8 +16,6 @@ $sql->execute();
 $result = $sql->get_result();
 ?>
 
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
