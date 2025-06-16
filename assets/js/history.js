@@ -124,4 +124,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCalendar();
     loadWorkoutStats();
+
+        // Automatically load today's history on page load
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const isoDate = `${year}-${month}-${day}`;
+    fetch(`get-history.php?date=${isoDate}`)
+        .then(res => res.json())
+        .then(data => {
+            // Highlight today's date in the calendar if present
+            document.querySelectorAll('.date').forEach(d => {
+                if (d.getAttribute('data-date') === isoDate) {
+                    d.classList.add('selected');
+                }
+            });
+            // Display today's history
+            const completedWOContainer = document.querySelector('#completedWOs .completedWO');
+            if (completedWOContainer) {
+                completedWOContainer.innerHTML = '';
+                if (data.length === 0) {
+                    completedWOContainer.innerHTML = '<p>No workout history for this day.</p>';
+                } else {
+                    data.forEach(entry => {
+                        const p = document.createElement('p');
+                        p.textContent = `${entry.exercise_name} - ${entry.reps} reps (${entry.duration} sec) x ${entry.sets} sets`;
+                        completedWOContainer.appendChild(p);
+                    });
+                }
+            }
+        });
 });

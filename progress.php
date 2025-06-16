@@ -7,15 +7,15 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-include 'database.php';
+$user_id = $_SESSION['user_id'];
 
 // Handle weight logging
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['log_weight'])) {
     $log_date = date("Y-m-d"); // or get from form if you allow
     $weight = $_POST['weight'];
 
-    $stmt = $conn->prepare("INSERT INTO weight (log_date, weight) VALUES (?, ?)");
-    $stmt->bind_param("sd", $log_date, $weight);
+    $stmt = $conn->prepare("INSERT INTO weight (user_id, log_date, weight) VALUES (?, ?, ?)");
+    $stmt->bind_param("isd", $user_id, $log_date, $weight);
     $stmt->execute();
     $stmt->close();
 }
@@ -27,34 +27,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_measurements'])) 
     $thigh = empty($_POST['thigh']) ? null : floatval($_POST['thigh']);
     $arm = empty($_POST['arm']) ? null : floatval($_POST['arm']);
 
-    $stmt = $conn->prepare("INSERT INTO measurements (log_date, waist, hips, thigh, arm) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO measurements (user_id, log_date, waist, hips, thigh, arm) VALUES (?, ?, ?, ?, ?, ?)");
     $log_date = date("Y-m-d");
-    $stmt->bind_param("sdddd", $log_date, $waist, $hips, $thigh, $arm);
+    $stmt->bind_param("isdddd", $user_id, $log_date, $waist, $hips, $thigh, $arm);
     $stmt->execute();
     $stmt->close();
 }
 
-// You can fetch the latest measurements for display
+// Fetch latest weight
+$latest_weight = "";
+$stmt = $conn->prepare("SELECT weight FROM weight WHERE user_id = ? ORDER BY log_date DESC LIMIT 1");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result && $result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $latest_weight = $row['weight'];
+}
+$stmt->close();
+
+// Fetch latest measurements
 $measurements = [
     'waist' => '',
-    'chest' => '',
     'hips' => '',
     'thigh' => '',
     'arm' => ''
 ];
 
-$latest_weight = "";
 
-$result = $conn->query("SELECT weight FROM weight ORDER BY log_date DESC LIMIT 1");
-if ($result && $result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $latest_weight = $row['weight'];
-}
-
-$result = $conn->query("SELECT * FROM measurements ORDER BY id DESC LIMIT 1");
+$stmt = $conn->prepare("SELECT waist, hips, thigh, arm FROM measurements WHERE user_id = ? ORDER BY id DESC LIMIT 1");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 if ($result && $result->num_rows > 0) {
     $measurements = $result->fetch_assoc();
 }
+$stmt->close();
 
 $pageTitle = "Plans";
 $pageId = "plans";
@@ -118,6 +126,7 @@ include 'includes/header.php';
 <?php include 'includes/footer.php'; ?>
 
 <script>
+// Weight Chart
 document.addEventListener('DOMContentLoaded', function() {
     fetch('progress_data.php')
     .then(response => response.json())
@@ -173,9 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-</script>
-
-<script>
+// Weight Modal
 document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById("logWeightModal");
     const btn = document.getElementById("logWeightBtn");
@@ -196,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Streak Counter
 document.addEventListener('DOMContentLoaded', function () {
     fetch('streak.php')
     .then(response => response.json())
